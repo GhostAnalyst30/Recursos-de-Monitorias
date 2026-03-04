@@ -17,7 +17,7 @@ Repositorio de materiales y recursos para las monitorias de Cálculo Univariable
 
 | Clase | Tema | Enlace |
 |-------|------|--------|
-| **Clase 1** | Fundamentos de Funciones Matemáticas | [Ver Clase 1](https://ghostanalyst30.github.io/Calculo_Univariable/Clase1.html) |
+| **Clase 1** | Fundamentos de Funciones Matemáticas | [Ver Clase 1](https://ghostanalyst30.github.io/Recursos-de-Monitorias/Calculo_Univariable/Clase1.html) |
 | **Clase 2** | *Próximamente* | - |
 | **Clase 3** | *Próximamente* | - |
 

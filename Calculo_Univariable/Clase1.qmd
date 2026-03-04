@@ -9,10 +9,6 @@ date: "Marzo 2026"
 
 lang: es
 
-project:
-  type: default
-  output-dir: "Calculo Univariable"  # Todas las salidas van a esta carpeta
-
 format:
     html:
         theme: 
@@ -27,7 +23,8 @@ format:
         margin-top: 2cm
         margin-bottom: 2cm
         margin-left: 1.5cm
-        margin-right: 1.5cm        include-after-body: footer.html
+        margin-right: 1.5cm        
+        include-after-body: footer.html
 ---
 
 # Introducción
