@@ -1,0 +1,288 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 1: Fundamentos de Funciones Matemáticas"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+date: "Marzo 2026"
+
+lang: es
+
+project:
+  type: default
+  output-dir: "Calculo Univariable"  # Todas las salidas van a esta carpeta
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta semana estudiaremos el concepto fundamental de **función matemática**, junto con sus elementos principales: dominio, rango, evaluación y representación gráfica.
+
+---
+
+# Concepto de Función Matemática
+
+Una **función** es una regla que asigna a cada elemento de un conjunto llamado *dominio*, un único elemento de otro conjunto llamado *codominio*.
+
+Se denota como:
+
+$$
+f: A \rightarrow B
+$$
+
+donde:
+
+- $A$ es el dominio.
+- $B$ es el codominio.
+- $f(x)$ es la imagen de $x$.
+
+## Ejemplo
+
+$$
+f(x) = 2x + 3
+$$
+
+Esta función asigna a cada número real $x$ el valor $2x + 3$.
+
+$$
+f(1) = 2(1) + 3 = 5
+$$
+$$
+f(2) = 2(2) + 3 = 7
+$$
+$$
+f(3) = 2(3) + 3 = 9
+$$
+
+---
+
+# Dominio de una Función
+
+El **dominio** es el conjunto de valores para los cuales la función está definida.
+
+## Restricciones comunes
+
+- No se puede dividir entre cero.
+- No se puede extraer raíz par de número negativo (en $\mathbb{R}$).
+- No se puede tomar logaritmo de número negativo o cero.
+
+---
+
+## Ejemplo 1: Función racional
+
+$$
+f(x) = \frac{1}{x - 2}
+$$
+
+**Paso 1:** El denominador no puede ser cero.
+
+$$
+x - 2 \neq 0
+$$
+
+**Paso 2:** Resolver la restricción.
+
+$$
+x \neq 2
+$$
+
+**Dominio:**
+
+$$
+D_f = \mathbb{R} - \{2\}
+$$
+
+---
+
+## Ejemplo 2: Función con raíz
+
+$$
+f(x) = \sqrt{x - 5}
+$$
+
+**Paso 1:** El radicando debe ser mayor o igual que cero.
+
+$$
+x - 5 \geq 0
+$$
+
+**Paso 2:** Resolver.
+
+$$
+x \geq 5
+$$
+
+**Dominio:**
+
+$$
+D_f = [5, \infty)
+$$
+
+---
+
+# Rango de una Función
+
+El **rango** es el conjunto de valores que toma la función cuando se evalúa en todos los valores del dominio.
+
+## Ejemplo
+
+$$
+f(x) = x^2
+$$
+
+El cuadrado de cualquier número real es mayor o igual que cero.
+
+$$
+R_f = [0, \infty)
+$$
+
+---
+
+# Evaluación de una Función
+
+Evaluar una función consiste en sustituir un valor específico en la expresión algebraica.
+
+## Ejemplo
+
+$$
+f(x) = 3x^2 - 2x + 1
+$$
+
+Calcular $f(2)$:
+
+$$
+f(2) = 3(2)^2 - 2(2) + 1
+$$
+
+$$
+f(2) = 3(4) - 4 + 1
+$$
+
+$$
+f(2) = 12 - 4 + 1 = 9
+$$
+
+---
+
+# Gráfica de una Función
+
+La gráfica de una función es el conjunto de puntos $(x, f(x))$ en el plano cartesiano.
+
+Para graficar:
+
+1. Construir una tabla de valores.
+2. Calcular puntos.
+3. Representarlos en el plano.
+4. Analizar el comportamiento de la función.
+
+---
+
+# Laboratorio
+
+## Ejercicios Resueltos
+
+### Ejercicio 1
+
+Encontrar el dominio de:
+
+$$
+f(x) = \frac{2}{x + 1}
+$$
+
+**Solución:**
+
+$$
+x + 1 \neq 0
+$$
+
+$$
+x \neq -1
+$$
+
+Dominio:
+
+$$
+\mathbb{R} - \{-1\}
+$$
+
+---
+
+### Ejercicio 2
+
+Encontrar el dominio de:
+
+$$
+f(x) = \sqrt{3x - 6}
+$$
+
+$$
+3x - 6 \geq 0
+$$
+
+$$
+3x \geq 6
+$$
+
+$$
+x \geq 2
+$$
+
+Dominio:
+
+$$
+[2, \infty)
+$$
+
+---
+
+# Uso de GeoGebra
+
+Para el estudio gráfico utilizaremos **GeoGebra**.
+
+## Actividad
+
+1. Abrir GeoGebra.
+[GeoGebra](https://www.geogebra.org/calculator)
+2. Escribir la función en la barra de entrada.
+3. Presionar Enter.
+4. Analizar la gráfica generada.
+5. Identificar dominio y comportamiento visual.
+
+Ejemplo para ingresar:
+
+$$
+f(x) = \frac{1}{x - 2}
+$$
+
+Observar la asíntota vertical en $x = 2$.
+
+---
+
+# Ejercicios Propuestos
+
+1. Determinar el dominio de $f(x) = \frac{1}{x^2 - 4}$.
+2. Determinar el dominio de $f(x) = \sqrt{2x + 1}$.
+3. Evaluar $f(3)$ si $f(x) = 4x^2 - x + 2$.
+4. Graficar en GeoGebra $f(x) = x^3 - 2x$ y analizar su comportamiento.
+
+---
+
+# Conclusión
+
+En esta clase se estudio los conceptos fundamentales de función matemática, dominio, rango, evaluación y representación gráfica. Estos conceptos constituyen la base para el estudio posterior de límites y derivadas.
