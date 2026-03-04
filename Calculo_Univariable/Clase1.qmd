@@ -24,7 +24,7 @@ format:
         margin-bottom: 2cm
         margin-left: 1.5cm
         margin-right: 1.5cm        
-        include-after-body: https://github.com/GhostAnalyst30/Recursos-de-Monitorias/blob/master/Calculo_Univariable/footer.html
+        include-after-body: footer.html
 ---
 
 # Introducción
