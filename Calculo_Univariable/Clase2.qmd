@@ -1,0 +1,155 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 2: Estudio del Límite de una Función"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+date: "Marzo 2026"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta clase abordaremos el concepto fundamental de **límite de una función**, explorando su significado intuitivo y formal, así como sus múltiples representaciones para comprender el comportamiento de una función cerca de un punto.
+
+---
+
+# Concepto de Límite de una Función
+
+El límite describe el comportamiento de una función $f(x)$ a medida que la variable independiente $x$ se aproxima a un valor específico $c$, sin necesariamente alcanzarlo.
+
+## Idea Informal
+
+Decimos que el límite de $f(x)$ cuando $x$ tiende a $c$ es $L$, y escribimos:
+
+$$
+\lim_{x \to c} f(x) = L
+$$
+
+si podemos hacer que los valores de $f(x)$ estén tan cerca de $L$ como queramos, tomando valores de $x$ suficientemente cerca de $c$, pero no iguales a $c$.
+
+---
+
+# Representaciones del Límite
+
+Para comprender el límite, podemos abordarlo desde cuatro perspectivas:
+
+1.  **Verbal:** Describir con palabras el comportamiento de la función.
+2.  **Numérica:** Construir una tabla de valores con $x$ cercanos a $c$.
+3.  **Gráfica:** Observar la tendencia de la función en su representación visual.
+4.  **Algebraica:** Manipular la expresión de la función para determinar el límite de forma analítica.
+
+---
+
+# Laboratorio
+
+## Representación Numérica (Tabla de Valores)
+
+**Ejemplo 1:** Calcular $\lim_{x \to 2} (2x + 1)$.
+
+Para estimar el límite, evaluamos la función en valores de $x$ que se acerquen a 2 por la izquierda (menores que 2) y por la derecha (mayores que 2).
+
+| $x$ | 1.9 | 1.99 | 1.999 | 2 | 2.001 | 2.01 | 2.1 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| $f(x)=2x+1$ | 4.8 | 4.98 | 4.998 | ? | 5.002 | 5.02 | 5.2 |
+
+Observamos que a medida que $x$ se acerca a 2, $f(x)$ se acerca a 5.
+
+$$
+\lim_{x \to 2} (2x + 1) = 5
+$$
+
+---
+
+## Representación Gráfica
+
+**Ejemplo 2:** Analizar gráficamente $\lim_{x \to 1} \frac{x^2 - 1}{x - 1}$.
+
+La función $f(x) = \frac{x^2 - 1}{x - 1}$ no está definida en $x=1$ (indeterminación $0/0$). Sin embargo, podemos simplificarla: $f(x) = \frac{(x-1)(x+1)}{x-1} = x+1$, para $x \neq 1$.
+
+Su gráfica es una línea recta con un "hueco" en $x=1$. Visualmente, cuando $x$ se acerca a 1, $f(x)$ se acerca a 2.
+
+$$
+\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = 2
+$$
+
+---
+
+## Representación Algebraica (Forma indeterminada $0/0$)
+
+**Ejemplo 3:** Calcular $\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$.
+
+1.  **Verificar indeterminación:** Al sustituir $x=3$, obtenemos $\frac{0}{0}$.
+2.  **Factorizar:** $\frac{(x-3)(x+3)}{x-3}$.
+3.  **Simplificar:** Cancelamos el factor común $(x-3)$, teniendo en cuenta que $x \neq 3$. Obtenemos $x+3$.
+4.  **Evaluar:** $\lim_{x \to 3} (x+3) = 3+3 = 6$.
+
+---
+
+**Ejemplo 4:** Calcular $\lim_{x \to 0} \frac{\sqrt{x+4} - 2}{x}$.
+
+1.  **Verificar indeterminación:** Al sustituir $x=0$, obtenemos $\frac{0}{0}$.
+2.  **Racionalizar:** Multiplicamos numerador y denominador por el conjugado del numerador ($\sqrt{x+4} + 2$).
+    $$
+    \frac{(\sqrt{x+4} - 2)(\sqrt{x+4} + 2)}{x(\sqrt{x+4} + 2)} = \frac{(x+4) - 4}{x(\sqrt{x+4} + 2)} = \frac{x}{x(\sqrt{x+4} + 2)}
+    $$
+3.  **Simplificar:** Cancelamos $x$ (con $x \neq 0$). Obtenemos $\frac{1}{\sqrt{x+4} + 2}$.
+4.  **Evaluar:** $\lim_{x \to 0} \frac{1}{\sqrt{x+4} + 2} = \frac{1}{\sqrt{4} + 2} = \frac{1}{2+2} = \frac{1}{4}$.
+
+---
+
+**Ejemplo 5 (Límites laterales):** Analizar $\lim_{x \to 2} f(x)$ para la función por partes:
+
+$$
+f(x) =
+\begin{cases}
+x + 1 & \text{si } x < 2 \\
+3 & \text{si } x = 2 \\
+-x + 5 & \text{si } x > 2
+\end{cases}
+$$
+
+- **Límite por la izquierda ($x \to 2^-$):** Usamos $x+1$. $\lim_{x \to 2^-} (x+1) = 2+1 = 3$.
+- **Límite por la derecha ($x \to 2^+$):** Usamos $-x+5$. $\lim_{x \to 2^+} (-x+5) = -2+5 = 3$.
+
+Como ambos límites laterales son iguales, el límite existe y es 3.
+
+$$
+\lim_{x \to 2} f(x) = 3
+$$
+
+# Ejercicios Propuestos
+
+Calcula los siguientes límites:
+
+1.  $\lim_{x \to 4} (3x - 2)$
+2.  $\lim_{x \to -1} (x^2 + 2x - 3)$
+3.  $\lim_{x \to 2} \frac{x^2 - 4}{x - 2}$
+4.  $\lim_{x \to 5} \frac{x^2 - 6x + 5}{x - 5}$
+5.  $\lim_{h \to 0} \frac{(4+h)^2 - 16}{h}$
+6.  $\lim_{x \to 9} \frac{\sqrt{x} - 3}{x - 9}$
+7.  $\lim_{x \to 0} \frac{\frac{1}{2+x} - \frac{1}{2}}{x}$
+8.  Para la función $g(x) = \begin{cases} 2x-1 & \text{si } x < 3 \\ 10-x & \text{si } x \ge 3 \end{cases}$, encuentra $\lim_{x \to 3} g(x)$.
+
+# Conclusión
+
+Hemos explorado el concepto de límite a través de sus diferentes representaciones. Este estudio nos permite analizar el comportamiento local de las funciones, sentando las bases para el siguiente tema: la continuidad.

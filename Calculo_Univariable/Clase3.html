@@ -24,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="Clase1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Clase1_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Clase1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Clase1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="Clase1_files/libs/quarto-html/popper.min.js"></script>
-<script src="Clase1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Clase1_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Clase1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Clase1_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="Clase1_files/libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="Clase1_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="Clase1_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Clase1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Clase1_files/libs/bootstrap/bootstrap-ca3f5b2936431b3753bfe44233e7f33e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="Clase1_files/libs/bootstrap/bootstrap-dark-c794ccb691ec2793d058ca0f53fb371e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="Clase1_files/libs/bootstrap/bootstrap-ca3f5b2936431b3753bfe44233e7f33e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="Clase3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Clase3_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Clase3_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Clase3_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Clase3_files/libs/quarto-html/popper.min.js"></script>
+<script src="Clase3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Clase3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Clase3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Clase3_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="Clase3_files/libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="Clase3_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="Clase3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Clase3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Clase3_files/libs/bootstrap/bootstrap-ca3f5b2936431b3753bfe44233e7f33e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="Clase3_files/libs/bootstrap/bootstrap-dark-c794ccb691ec2793d058ca0f53fb371e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="Clase3_files/libs/bootstrap/bootstrap-ca3f5b2936431b3753bfe44233e7f33e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -244,39 +244,20 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
-  <li><a href="#concepto-de-función-matemática" id="toc-concepto-de-función-matemática" class="nav-link" data-scroll-target="#concepto-de-función-matemática"><span class="header-section-number">2</span> Concepto de Función Matemática</a>
+  <li><a href="#concepto-de-continuidad-en-un-punto" id="toc-concepto-de-continuidad-en-un-punto" class="nav-link" data-scroll-target="#concepto-de-continuidad-en-un-punto"><span class="header-section-number">2</span> Concepto de Continuidad en un Punto</a>
   <ul class="collapse">
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="header-section-number">2.1</span> Ejemplo</a></li>
+  <li><a href="#condiciones-de-continuidad" id="toc-condiciones-de-continuidad" class="nav-link" data-scroll-target="#condiciones-de-continuidad"><span class="header-section-number">2.1</span> Condiciones de Continuidad</a></li>
   </ul></li>
-  <li><a href="#dominio-de-una-función" id="toc-dominio-de-una-función" class="nav-link" data-scroll-target="#dominio-de-una-función"><span class="header-section-number">3</span> Dominio de una Función</a>
+  <li><a href="#tipos-de-discontinuidad" id="toc-tipos-de-discontinuidad" class="nav-link" data-scroll-target="#tipos-de-discontinuidad"><span class="header-section-number">3</span> Tipos de Discontinuidad</a></li>
+  <li><a href="#teorema-del-valor-intermedio-tvi" id="toc-teorema-del-valor-intermedio-tvi" class="nav-link" data-scroll-target="#teorema-del-valor-intermedio-tvi"><span class="header-section-number">4</span> Teorema del Valor Intermedio (TVI)</a></li>
+  <li><a href="#laboratorio" id="toc-laboratorio" class="nav-link" data-scroll-target="#laboratorio"><span class="header-section-number">5</span> Laboratorio</a>
   <ul class="collapse">
-  <li><a href="#restricciones-comunes" id="toc-restricciones-comunes" class="nav-link" data-scroll-target="#restricciones-comunes"><span class="header-section-number">3.1</span> Restricciones comunes</a></li>
-  <li><a href="#ejemplo-1-función-racional" id="toc-ejemplo-1-función-racional" class="nav-link" data-scroll-target="#ejemplo-1-función-racional"><span class="header-section-number">3.2</span> Ejemplo 1: Función racional</a></li>
-  <li><a href="#ejemplo-2-función-con-raíz" id="toc-ejemplo-2-función-con-raíz" class="nav-link" data-scroll-target="#ejemplo-2-función-con-raíz"><span class="header-section-number">3.3</span> Ejemplo 2: Función con raíz</a></li>
+  <li><a href="#verificación-de-continuidad" id="toc-verificación-de-continuidad" class="nav-link" data-scroll-target="#verificación-de-continuidad"><span class="header-section-number">5.1</span> Verificación de Continuidad</a></li>
+  <li><a href="#aplicación-del-teorema-del-valor-intermedio" id="toc-aplicación-del-teorema-del-valor-intermedio" class="nav-link" data-scroll-target="#aplicación-del-teorema-del-valor-intermedio"><span class="header-section-number">5.2</span> Aplicación del Teorema del Valor Intermedio</a></li>
+  <li><a href="#uso-de-geogebra-para-análisis-de-continuidad" id="toc-uso-de-geogebra-para-análisis-de-continuidad" class="nav-link" data-scroll-target="#uso-de-geogebra-para-análisis-de-continuidad"><span class="header-section-number">5.3</span> Uso de GeoGebra para Análisis de Continuidad</a></li>
   </ul></li>
-  <li><a href="#rango-de-una-función" id="toc-rango-de-una-función" class="nav-link" data-scroll-target="#rango-de-una-función"><span class="header-section-number">4</span> Rango de una Función</a>
-  <ul class="collapse">
-  <li><a href="#ejemplo-1" id="toc-ejemplo-1" class="nav-link" data-scroll-target="#ejemplo-1"><span class="header-section-number">4.1</span> Ejemplo</a></li>
-  </ul></li>
-  <li><a href="#evaluación-de-una-función" id="toc-evaluación-de-una-función" class="nav-link" data-scroll-target="#evaluación-de-una-función"><span class="header-section-number">5</span> Evaluación de una Función</a>
-  <ul class="collapse">
-  <li><a href="#ejemplo-2" id="toc-ejemplo-2" class="nav-link" data-scroll-target="#ejemplo-2"><span class="header-section-number">5.1</span> Ejemplo</a></li>
-  </ul></li>
-  <li><a href="#gráfica-de-una-función" id="toc-gráfica-de-una-función" class="nav-link" data-scroll-target="#gráfica-de-una-función"><span class="header-section-number">6</span> Gráfica de una Función</a></li>
-  <li><a href="#laboratorio" id="toc-laboratorio" class="nav-link" data-scroll-target="#laboratorio"><span class="header-section-number">7</span> Laboratorio</a>
-  <ul class="collapse">
-  <li><a href="#ejercicios-resueltos" id="toc-ejercicios-resueltos" class="nav-link" data-scroll-target="#ejercicios-resueltos"><span class="header-section-number">7.1</span> Ejercicios Resueltos</a>
-  <ul class="collapse">
-  <li><a href="#ejercicio-1" id="toc-ejercicio-1" class="nav-link" data-scroll-target="#ejercicio-1"><span class="header-section-number">7.1.1</span> Ejercicio 1</a></li>
-  <li><a href="#ejercicio-2" id="toc-ejercicio-2" class="nav-link" data-scroll-target="#ejercicio-2"><span class="header-section-number">7.1.2</span> Ejercicio 2</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#uso-de-geogebra" id="toc-uso-de-geogebra" class="nav-link" data-scroll-target="#uso-de-geogebra"><span class="header-section-number">8</span> Uso de GeoGebra</a>
-  <ul class="collapse">
-  <li><a href="#actividad" id="toc-actividad" class="nav-link" data-scroll-target="#actividad"><span class="header-section-number">8.1</span> Actividad</a></li>
-  </ul></li>
-  <li><a href="#ejercicios-propuestos" id="toc-ejercicios-propuestos" class="nav-link" data-scroll-target="#ejercicios-propuestos"><span class="header-section-number">9</span> Ejercicios Propuestos</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">10</span> Conclusión</a></li>
+  <li><a href="#ejercicios-propuestos" id="toc-ejercicios-propuestos" class="nav-link" data-scroll-target="#ejercicios-propuestos"><span class="header-section-number">6</span> Ejercicios Propuestos</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">7</span> Conclusión</a></li>
   </ul>
 </nav>
 </div>
@@ -286,7 +267,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Cálculo Univariable</h1>
-<p class="subtitle lead">Clase 1: Fundamentos de Funciones Matemáticas</p>
+<p class="subtitle lead">Clase 3: Estudio de la Continuidad de una Función</p>
 </div>
 
 
@@ -324,216 +305,133 @@ window.Quarto = {
 
 <section id="introducción" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
-<p>En esta semana estudiaremos el concepto fundamental de <strong>función matemática</strong>, junto con sus elementos principales: dominio, rango, evaluación y representación gráfica.</p>
+<p>En esta clase analizaremos el concepto de <strong>continuidad</strong> de una función en un punto. Una función continua es aquella que no presenta “saltos”, “huecos” o “interrupciones” en su gráfica. Estudiaremos las condiciones que definen la continuidad y cómo verificarlas.</p>
 <hr>
 </section>
-<section id="concepto-de-función-matemática" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Concepto de Función Matemática</h1>
-<p>Una <strong>función</strong> es una regla que asigna a cada elemento de un conjunto llamado <em>dominio</em>, un único elemento de otro conjunto llamado <em>codominio</em>.</p>
-<p>Se denota como:</p>
-<p><span class="math display">\[
-f: A \rightarrow B
-\]</span></p>
-<p>donde:</p>
-<ul>
-<li><span class="math inline">\(A\)</span> es el dominio.</li>
-<li><span class="math inline">\(B\)</span> es el codominio.</li>
-<li><span class="math inline">\(f(x)\)</span> es la imagen de <span class="math inline">\(x\)</span>.</li>
-</ul>
-<section id="ejemplo" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="ejemplo"><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p><span class="math display">\[
-f(x) = 2x + 3
-\]</span></p>
-<p>Esta función asigna a cada número real <span class="math inline">\(x\)</span> el valor <span class="math inline">\(2x + 3\)</span>.</p>
-<p><span class="math display">\[
-f(1) = 2(1) + 3 = 5
-\]</span> <span class="math display">\[
-f(2) = 2(2) + 3 = 7
-\]</span> <span class="math display">\[
-f(3) = 2(3) + 3 = 9
-\]</span></p>
+<section id="concepto-de-continuidad-en-un-punto" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Concepto de Continuidad en un Punto</h1>
+<p>Intuitivamente, una función es continua en un punto si podemos dibujar su gráfica cerca de ese punto sin levantar el lápiz.</p>
+<section id="condiciones-de-continuidad" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="condiciones-de-continuidad"><span class="header-section-number">2.1</span> Condiciones de Continuidad</h2>
+<p>Una función <span class="math inline">\(f\)</span> es <strong>continua en un punto</strong> <span class="math inline">\(x = c\)</span> si se cumplen las siguientes tres condiciones:</p>
+<ol type="1">
+<li><strong>Condición 1:</strong> <span class="math inline">\(f(c)\)</span> está definida. (El punto existe).</li>
+<li><strong>Condición 2:</strong> <span class="math inline">\(\lim_{x \to c} f(x)\)</span> existe. (Los límites laterales son iguales).</li>
+<li><strong>Condición 3:</strong> <span class="math inline">\(\lim_{x \to c} f(x) = f(c)\)</span>. (El límite coincide con el valor de la función en el punto).</li>
+</ol>
+<p>Si alguna de estas condiciones no se cumple, la función es <strong>discontinua en <span class="math inline">\(x = c\)</span></strong>.</p>
 <hr>
 </section>
 </section>
-<section id="dominio-de-una-función" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Dominio de una Función</h1>
-<p>El <strong>dominio</strong> es el conjunto de valores para los cuales la función está definida.</p>
-<section id="restricciones-comunes" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="restricciones-comunes"><span class="header-section-number">3.1</span> Restricciones comunes</h2>
+<section id="tipos-de-discontinuidad" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Tipos de Discontinuidad</h1>
 <ul>
-<li>No se puede dividir entre cero.</li>
-<li>No se puede extraer raíz par de número negativo (en <span class="math inline">\(\mathbb{R}\)</span>).</li>
-<li>No se puede tomar logaritmo de número negativo o cero.</li>
+<li><strong>Discontinuidad Evitable (o removible):</strong> El límite existe, pero no es igual al valor de la función (o la función no está definida). Gráficamente, es un “hueco”.</li>
+<li><strong>Discontinuidad Inevitable (o de salto):</strong> Los límites laterales existen pero son diferentes. Gráficamente, es un “salto”.</li>
+<li><strong>Discontinuidad Infinita o Esencial:</strong> Al menos uno de los límites laterales es infinito. Gráficamente, hay una asíntota vertical.</li>
 </ul>
 <hr>
 </section>
-<section id="ejemplo-1-función-racional" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="ejemplo-1-función-racional"><span class="header-section-number">3.2</span> Ejemplo 1: Función racional</h2>
-<p><span class="math display">\[
-f(x) = \frac{1}{x - 2}
-\]</span></p>
-<p><strong>Paso 1:</strong> El denominador no puede ser cero.</p>
-<p><span class="math display">\[
-x - 2 \neq 0
-\]</span></p>
-<p><strong>Paso 2:</strong> Resolver la restricción.</p>
-<p><span class="math display">\[
-x \neq 2
-\]</span></p>
-<p><strong>Dominio:</strong></p>
-<p><span class="math display">\[
-D_f = \mathbb{R} - \{2\}
-\]</span></p>
+<section id="teorema-del-valor-intermedio-tvi" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Teorema del Valor Intermedio (TVI)</h1>
+<p>Si <span class="math inline">\(f\)</span> es una función <strong>continua</strong> en un intervalo cerrado <span class="math inline">\([a, b]\)</span>, y <span class="math inline">\(k\)</span> es cualquier número entre <span class="math inline">\(f(a)\)</span> y <span class="math inline">\(f(b)\)</span>, entonces existe al menos un número <span class="math inline">\(c\)</span> en <span class="math inline">\([a, b]\)</span> tal que <span class="math inline">\(f(c) = k\)</span>.</p>
+<p>En otras palabras, una función continua toma todos los valores intermedios entre los valores de los extremos del intervalo.</p>
 <hr>
 </section>
-<section id="ejemplo-2-función-con-raíz" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="ejemplo-2-función-con-raíz"><span class="header-section-number">3.3</span> Ejemplo 2: Función con raíz</h2>
-<p><span class="math display">\[
-f(x) = \sqrt{x - 5}
-\]</span></p>
-<p><strong>Paso 1:</strong> El radicando debe ser mayor o igual que cero.</p>
-<p><span class="math display">\[
-x - 5 \geq 0
-\]</span></p>
-<p><strong>Paso 2:</strong> Resolver.</p>
-<p><span class="math display">\[
-x \geq 5
-\]</span></p>
-<p><strong>Dominio:</strong></p>
-<p><span class="math display">\[
-D_f = [5, \infty)
-\]</span></p>
-<hr>
-</section>
-</section>
-<section id="rango-de-una-función" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Rango de una Función</h1>
-<p>El <strong>rango</strong> es el conjunto de valores que toma la función cuando se evalúa en todos los valores del dominio.</p>
-<section id="ejemplo-1" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ejemplo-1"><span class="header-section-number">4.1</span> Ejemplo</h2>
-<p><span class="math display">\[
-f(x) = x^2
-\]</span></p>
-<p>El cuadrado de cualquier número real es mayor o igual que cero.</p>
-<p><span class="math display">\[
-R_f = [0, \infty)
-\]</span></p>
-<hr>
-</section>
-</section>
-<section id="evaluación-de-una-función" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Evaluación de una Función</h1>
-<p>Evaluar una función consiste en sustituir un valor específico en la expresión algebraica.</p>
-<section id="ejemplo-2" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="ejemplo-2"><span class="header-section-number">5.1</span> Ejemplo</h2>
-<p><span class="math display">\[
-f(x) = 3x^2 - 2x + 1
-\]</span></p>
-<p>Calcular <span class="math inline">\(f(2)\)</span>:</p>
-<p><span class="math display">\[
-f(2) = 3(2)^2 - 2(2) + 1
-\]</span></p>
-<p><span class="math display">\[
-f(2) = 3(4) - 4 + 1
-\]</span></p>
-<p><span class="math display">\[
-f(2) = 12 - 4 + 1 = 9
-\]</span></p>
-<hr>
-</section>
-</section>
-<section id="gráfica-de-una-función" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Gráfica de una Función</h1>
-<p>La gráfica de una función es el conjunto de puntos <span class="math inline">\((x, f(x))\)</span> en el plano cartesiano.</p>
-<p>Para graficar:</p>
+<section id="laboratorio" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Laboratorio</h1>
+<section id="verificación-de-continuidad" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="verificación-de-continuidad"><span class="header-section-number">5.1</span> Verificación de Continuidad</h2>
+<p><strong>Ejemplo 1:</strong> Determinar si <span class="math inline">\(f(x) = 3x^2 - 2x + 1\)</span> es continua en <span class="math inline">\(x = 2\)</span>.</p>
 <ol type="1">
-<li>Construir una tabla de valores.</li>
-<li>Calcular puntos.</li>
-<li>Representarlos en el plano.</li>
-<li>Analizar el comportamiento de la función.</li>
+<li><strong><span class="math inline">\(f(2)\)</span> definida?</strong> <span class="math inline">\(f(2) = 3(4) - 4 + 1 = 9\)</span>. Sí.</li>
+<li><strong><span class="math inline">\(\lim_{x \to 2} f(x)\)</span> existe?</strong> <span class="math inline">\(\lim_{x \to 2} (3x^2 - 2x + 1) = 9\)</span>. Sí.</li>
+<li><strong>¿Son iguales?</strong> <span class="math inline">\(9 = 9\)</span>. Sí.</li>
+</ol>
+<p><strong>Conclusión:</strong> La función es continua en <span class="math inline">\(x = 2\)</span>.</p>
+<hr>
+<p><strong>Ejemplo 2:</strong> Analizar la continuidad de <span class="math inline">\(f(x) = \frac{1}{x-3}\)</span> en <span class="math inline">\(x = 3\)</span>.</p>
+<ol type="1">
+<li><strong><span class="math inline">\(f(3)\)</span> definida?</strong> <span class="math inline">\(f(3) = \frac{1}{0}\)</span>. No está definida.</li>
+<li>Dado que la primera condición falla, la función es <strong>discontinua</strong> en <span class="math inline">\(x=3\)</span>. Es una discontinuidad infinita (asíntota vertical).</li>
+</ol>
+<hr>
+<p><strong>Ejemplo 3:</strong> Determinar la continuidad en <span class="math inline">\(x = 1\)</span> para:</p>
+<p><span class="math display">\[
+f(x) =
+\begin{cases}
+x^2 &amp; \text{si } x &lt; 1 \\
+2 &amp; \text{si } x = 1 \\
+2x - 1 &amp; \text{si } x &gt; 1
+\end{cases}
+\]</span></p>
+<ol type="1">
+<li><strong><span class="math inline">\(f(1)\)</span> definida?</strong> <span class="math inline">\(f(1) = 2\)</span>. Sí.</li>
+<li><strong><span class="math inline">\(\lim_{x \to 1} f(x)\)</span> existe?</strong>
+<ul>
+<li>Izq: <span class="math inline">\(\lim_{x \to 1^-} x^2 = 1\)</span>.</li>
+<li>Der: <span class="math inline">\(\lim_{x \to 1^+} (2x - 1) = 1\)</span>.</li>
+<li>Los límites laterales son iguales a 1, por lo tanto <span class="math inline">\(\lim_{x \to 1} f(x) = 1\)</span>. Sí, existe.</li>
+</ul></li>
+<li><strong>¿Son iguales?</strong> <span class="math inline">\(\lim_{x \to 1} f(x) = 1 \neq 2 = f(1)\)</span>.</li>
+</ol>
+<p><strong>Conclusión:</strong> La función es <strong>discontinua</strong> en <span class="math inline">\(x = 1\)</span>. Es una discontinuidad evitable (removible).</p>
+<hr>
+<p><strong>Ejemplo 4:</strong> Encontrar el valor de <span class="math inline">\(k\)</span> para que <span class="math inline">\(f\)</span> sea continua en <span class="math inline">\(x=2\)</span>.</p>
+<p><span class="math display">\[
+f(x) =
+\begin{cases}
+2x + 1 &amp; \text{si } x \le 2 \\
+k - x &amp; \text{si } x &gt; 2
+\end{cases}
+\]</span></p>
+<p>Para que sea continua en <span class="math inline">\(x=2\)</span>, <span class="math inline">\(\lim_{x \to 2^-} f(x) = \lim_{x \to 2^+} f(x) = f(2)\)</span>.</p>
+<ul>
+<li>Izq: <span class="math inline">\(\lim_{x \to 2^-} (2x+1) = 5\)</span>.</li>
+<li>Der: <span class="math inline">\(\lim_{x \to 2^+} (k - x) = k - 2\)</span>.</li>
+<li><span class="math inline">\(f(2) = 2(2)+1 = 5\)</span>.</li>
+</ul>
+<p>Igualamos los límites: <span class="math inline">\(k - 2 = 5 \implies k = 7\)</span>.</p>
+<hr>
+</section>
+<section id="aplicación-del-teorema-del-valor-intermedio" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="aplicación-del-teorema-del-valor-intermedio"><span class="header-section-number">5.2</span> Aplicación del Teorema del Valor Intermedio</h2>
+<p><strong>Ejemplo 5:</strong> Demostrar que la función <span class="math inline">\(f(x) = x^3 - 2x - 1\)</span> tiene al menos una raíz en el intervalo <span class="math inline">\([1, 2]\)</span>.</p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> es un polinomio, por lo tanto es continua en <span class="math inline">\([1,2]\)</span>.</li>
+<li>Evaluamos en los extremos:
+<ul>
+<li><span class="math inline">\(f(1) = 1^3 - 2(1) - 1 = 1 - 2 -1 = -2\)</span>.</li>
+<li><span class="math inline">\(f(2) = 8 - 4 - 1 = 3\)</span>.</li>
+</ul></li>
+<li>Tenemos <span class="math inline">\(f(1) = -2\)</span> y <span class="math inline">\(f(2) = 3\)</span>. El valor <span class="math inline">\(k=0\)</span> está entre <span class="math inline">\(-2\)</span> y <span class="math inline">\(3\)</span>.</li>
+<li>Por el TVI, existe al menos un <span class="math inline">\(c \in (1, 2)\)</span> tal que <span class="math inline">\(f(c) = 0\)</span>.</li>
 </ol>
 <hr>
 </section>
-<section id="laboratorio" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Laboratorio</h1>
-<section id="ejercicios-resueltos" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="ejercicios-resueltos"><span class="header-section-number">7.1</span> Ejercicios Resueltos</h2>
-<section id="ejercicio-1" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="ejercicio-1"><span class="header-section-number">7.1.1</span> Ejercicio 1</h3>
-<p>Encontrar el dominio de:</p>
-<p><span class="math display">\[
-f(x) = \frac{2}{x + 1}
-\]</span></p>
-<p><strong>Solución:</strong></p>
-<p><span class="math display">\[
-x + 1 \neq 0
-\]</span></p>
-<p><span class="math display">\[
-x \neq -1
-\]</span></p>
-<p>Dominio:</p>
-<p><span class="math display">\[
-\mathbb{R} - \{-1\}
-\]</span></p>
-<hr>
-</section>
-<section id="ejercicio-2" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="ejercicio-2"><span class="header-section-number">7.1.2</span> Ejercicio 2</h3>
-<p>Encontrar el dominio de:</p>
-<p><span class="math display">\[
-f(x) = \sqrt{3x - 6}
-\]</span></p>
-<p><span class="math display">\[
-3x - 6 \geq 0
-\]</span></p>
-<p><span class="math display">\[
-3x \geq 6
-\]</span></p>
-<p><span class="math display">\[
-x \geq 2
-\]</span></p>
-<p>Dominio:</p>
-<p><span class="math display">\[
-[2, \infty)
-\]</span></p>
-<hr>
-</section>
-</section>
-</section>
-<section id="uso-de-geogebra" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Uso de GeoGebra</h1>
-<p>Para el estudio gráfico utilizaremos <strong>GeoGebra</strong>.</p>
-<section id="actividad" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="actividad"><span class="header-section-number">8.1</span> Actividad</h2>
+<section id="uso-de-geogebra-para-análisis-de-continuidad" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="uso-de-geogebra-para-análisis-de-continuidad"><span class="header-section-number">5.3</span> Uso de GeoGebra para Análisis de Continuidad</h2>
+<p><strong>Actividad:</strong> Graficar la función del Ejemplo 3 en GeoGebra.</p>
 <ol type="1">
-<li>Abrir GeoGebra. <a href="https://www.geogebra.org/calculator">GeoGebra</a></li>
-<li>Escribir la función en la barra de entrada.</li>
-<li>Presionar Enter.</li>
-<li>Analizar la gráfica generada.</li>
-<li>Identificar dominio y comportamiento visual.</li>
+<li>Ingresar la función por partes usando el comando <code>Si</code> (o <code>If</code> en inglés): <code>f(x) = Si(x &lt; 1, x^2, x == 1, 2, 2x - 1)</code></li>
+<li>Observar la gráfica. Se verá una parábola que se acerca al punto <span class="math inline">\((1,1)\)</span>, pero la función en <span class="math inline">\(x=1\)</span> vale 2. GeoGebra mostrará un punto sólido en <span class="math inline">\((1,2)\)</span> y un círculo vacío en <span class="math inline">\((1,1)\)</span>, confirmando la discontinuidad evitable.</li>
 </ol>
-<p>Ejemplo para ingresar:</p>
-<p><span class="math display">\[
-f(x) = \frac{1}{x - 2}
-\]</span></p>
-<p>Observar la asíntota vertical en <span class="math inline">\(x = 2\)</span>.</p>
-<hr>
 </section>
 </section>
-<section id="ejercicios-propuestos" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Ejercicios Propuestos</h1>
+<section id="ejercicios-propuestos" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Ejercicios Propuestos</h1>
 <ol type="1">
-<li>Determinar el dominio de <span class="math inline">\(f(x) = \frac{1}{x^2 - 4}\)</span>.</li>
-<li>Determinar el dominio de <span class="math inline">\(f(x) = \sqrt{2x + 1}\)</span>.</li>
-<li>Evaluar <span class="math inline">\(f(3)\)</span> si <span class="math inline">\(f(x) = 4x^2 - x + 2\)</span>.</li>
-<li>Graficar en GeoGebra <span class="math inline">\(f(x) = x^3 - 2x\)</span> y analizar su comportamiento.</li>
+<li>Determina si <span class="math inline">\(f(x) = \frac{x^2-1}{x-1}\)</span> es continua en <span class="math inline">\(x=1\)</span>. Clasifica la discontinuidad.</li>
+<li>Analiza la continuidad de <span class="math inline">\(f(x) = \begin{cases} x+3 &amp; \text{si } x \le 0 \\ -x^2+3 &amp; \text{si } x &gt; 0 \end{cases}\)</span> en <span class="math inline">\(x=0\)</span>.</li>
+<li>Encuentra el valor de <span class="math inline">\(a\)</span> para que <span class="math inline">\(f(x) = \begin{cases} ax+2 &amp; \text{si } x &lt; 3 \\ 2x-1 &amp; \text{si } x \ge 3 \end{cases}\)</span> sea continua en <span class="math inline">\(x=3\)</span>.</li>
+<li>Clasifica el tipo de discontinuidad en <span class="math inline">\(x=2\)</span> para <span class="math inline">\(f(x)=\frac{|x-2|}{x-2}\)</span>.</li>
+<li>Usa el TVI para mostrar que <span class="math inline">\(f(x)=x^3 + x - 1\)</span> tiene una raíz en el intervalo <span class="math inline">\([0,1]\)</span>.</li>
+<li>Explica por qué la función <span class="math inline">\(f(x) = \frac{1}{x^2}\)</span> no contradice el TVI en el intervalo <span class="math inline">\([-1, 1]\)</span>.</li>
 </ol>
-<hr>
 </section>
-<section id="conclusión" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Conclusión</h1>
-<p>En esta clase se estudio los conceptos fundamentales de función matemática, dominio, rango, evaluación y representación gráfica. Estos conceptos constituyen la base para el estudio posterior de límites y derivadas.</p>
+<section id="conclusión" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusión</h1>
+<p>Hemos establecido las bases analíticas y gráficas de la continuidad. Este concepto es fundamental para la aplicación del Teorema del Valor Intermedio y es un prerrequisito esencial para abordar el estudio de la derivada.</p>
 </section>
 
 </main>

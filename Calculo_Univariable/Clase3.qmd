@@ -1,0 +1,163 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 3: Estudio de la Continuidad de una Función"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+date: "Marzo 2026"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta clase analizaremos el concepto de **continuidad** de una función en un punto. Una función continua es aquella que no presenta "saltos", "huecos" o "interrupciones" en su gráfica. Estudiaremos las condiciones que definen la continuidad y cómo verificarlas.
+
+---
+
+# Concepto de Continuidad en un Punto
+
+Intuitivamente, una función es continua en un punto si podemos dibujar su gráfica cerca de ese punto sin levantar el lápiz.
+
+## Condiciones de Continuidad
+
+Una función $f$ es **continua en un punto** $x = c$ si se cumplen las siguientes tres condiciones:
+
+1.  **Condición 1:** $f(c)$ está definida. (El punto existe).
+2.  **Condición 2:** $\lim_{x \to c} f(x)$ existe. (Los límites laterales son iguales).
+3.  **Condición 3:** $\lim_{x \to c} f(x) = f(c)$. (El límite coincide con el valor de la función en el punto).
+
+Si alguna de estas condiciones no se cumple, la función es **discontinua en $x = c$**.
+
+---
+
+# Tipos de Discontinuidad
+
+- **Discontinuidad Evitable (o removible):** El límite existe, pero no es igual al valor de la función (o la función no está definida). Gráficamente, es un "hueco".
+- **Discontinuidad Inevitable (o de salto):** Los límites laterales existen pero son diferentes. Gráficamente, es un "salto".
+- **Discontinuidad Infinita o Esencial:** Al menos uno de los límites laterales es infinito. Gráficamente, hay una asíntota vertical.
+
+---
+
+# Teorema del Valor Intermedio (TVI)
+
+Si $f$ es una función **continua** en un intervalo cerrado $[a, b]$, y $k$ es cualquier número entre $f(a)$ y $f(b)$, entonces existe al menos un número $c$ en $[a, b]$ tal que $f(c) = k$.
+
+En otras palabras, una función continua toma todos los valores intermedios entre los valores de los extremos del intervalo.
+
+---
+
+# Laboratorio
+
+## Verificación de Continuidad
+
+**Ejemplo 1:** Determinar si $f(x) = 3x^2 - 2x + 1$ es continua en $x = 2$.
+
+1.  **$f(2)$ definida?** $f(2) = 3(4) - 4 + 1 = 9$. Sí.
+2.  **$\lim_{x \to 2} f(x)$ existe?** $\lim_{x \to 2} (3x^2 - 2x + 1) = 9$. Sí.
+3.  **¿Son iguales?** $9 = 9$. Sí.
+
+**Conclusión:** La función es continua en $x = 2$.
+
+---
+
+**Ejemplo 2:** Analizar la continuidad de $f(x) = \frac{1}{x-3}$ en $x = 3$.
+
+1.  **$f(3)$ definida?** $f(3) = \frac{1}{0}$. No está definida.
+2.  Dado que la primera condición falla, la función es **discontinua** en $x=3$. Es una discontinuidad infinita (asíntota vertical).
+
+---
+
+**Ejemplo 3:** Determinar la continuidad en $x = 1$ para:
+
+$$
+f(x) =
+\begin{cases}
+x^2 & \text{si } x < 1 \\
+2 & \text{si } x = 1 \\
+2x - 1 & \text{si } x > 1
+\end{cases}
+$$
+
+1.  **$f(1)$ definida?** $f(1) = 2$. Sí.
+2.  **$\lim_{x \to 1} f(x)$ existe?**
+    - Izq: $\lim_{x \to 1^-} x^2 = 1$.
+    - Der: $\lim_{x \to 1^+} (2x - 1) = 1$.
+    - Los límites laterales son iguales a 1, por lo tanto $\lim_{x \to 1} f(x) = 1$. Sí, existe.
+3.  **¿Son iguales?** $\lim_{x \to 1} f(x) = 1 \neq 2 = f(1)$.
+
+**Conclusión:** La función es **discontinua** en $x = 1$. Es una discontinuidad evitable (removible).
+
+---
+
+**Ejemplo 4:** Encontrar el valor de $k$ para que $f$ sea continua en $x=2$.
+
+$$
+f(x) =
+\begin{cases}
+2x + 1 & \text{si } x \le 2 \\
+k - x & \text{si } x > 2
+\end{cases}
+$$
+
+Para que sea continua en $x=2$, $\lim_{x \to 2^-} f(x) = \lim_{x \to 2^+} f(x) = f(2)$.
+
+- Izq: $\lim_{x \to 2^-} (2x+1) = 5$.
+- Der: $\lim_{x \to 2^+} (k - x) = k - 2$.
+- $f(2) = 2(2)+1 = 5$.
+
+Igualamos los límites: $k - 2 = 5 \implies k = 7$.
+
+---
+
+## Aplicación del Teorema del Valor Intermedio
+
+**Ejemplo 5:** Demostrar que la función $f(x) = x^3 - 2x - 1$ tiene al menos una raíz en el intervalo $[1, 2]$.
+
+1.  $f$ es un polinomio, por lo tanto es continua en $[1,2]$.
+2.  Evaluamos en los extremos:
+    - $f(1) = 1^3 - 2(1) - 1 = 1 - 2 -1 = -2$.
+    - $f(2) = 8 - 4 - 1 = 3$.
+3.  Tenemos $f(1) = -2$ y $f(2) = 3$. El valor $k=0$ está entre $-2$ y $3$.
+4.  Por el TVI, existe al menos un $c \in (1, 2)$ tal que $f(c) = 0$.
+
+---
+
+## Uso de GeoGebra para Análisis de Continuidad
+
+**Actividad:** Graficar la función del Ejemplo 3 en GeoGebra.
+
+1.  Ingresar la función por partes usando el comando `Si` (o `If` en inglés):
+    `f(x) = Si(x < 1, x^2, x == 1, 2, 2x - 1)`
+2.  Observar la gráfica. Se verá una parábola que se acerca al punto $(1,1)$, pero la función en $x=1$ vale 2. GeoGebra mostrará un punto sólido en $(1,2)$ y un círculo vacío en $(1,1)$, confirmando la discontinuidad evitable.
+
+# Ejercicios Propuestos
+
+1.  Determina si $f(x) = \frac{x^2-1}{x-1}$ es continua en $x=1$. Clasifica la discontinuidad.
+2.  Analiza la continuidad de $f(x) = \begin{cases} x+3 & \text{si } x \le 0 \\ -x^2+3 & \text{si } x > 0 \end{cases}$ en $x=0$.
+3.  Encuentra el valor de $a$ para que $f(x) = \begin{cases} ax+2 & \text{si } x < 3 \\ 2x-1 & \text{si } x \ge 3 \end{cases}$ sea continua en $x=3$.
+4.  Clasifica el tipo de discontinuidad en $x=2$ para $f(x)=\frac{|x-2|}{x-2}$.
+5.  Usa el TVI para mostrar que $f(x)=x^3 + x - 1$ tiene una raíz en el intervalo $[0,1]$.
+6.  Explica por qué la función $f(x) = \frac{1}{x^2}$ no contradice el TVI en el intervalo $[-1, 1]$.
+
+# Conclusión
+
+Hemos establecido las bases analíticas y gráficas de la continuidad. Este concepto es fundamental para la aplicación del Teorema del Valor Intermedio y es un prerrequisito esencial para abordar el estudio de la derivada.

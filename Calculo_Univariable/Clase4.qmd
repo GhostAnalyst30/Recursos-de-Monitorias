@@ -1,0 +1,125 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 4: Derivada de una Función"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+date: "Marzo 2026"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta clase nos adentraremos en el corazón del cálculo diferencial: **la derivada**. Exploraremos su significado desde perspectivas geométricas y físicas, entendiéndola como una herramienta para medir la razón de cambio instantánea.
+
+---
+
+# Concepto de Derivada
+
+La derivada de una función $f$ en un punto $x$, denotada como $f'(x)$ o $\frac{df}{dx}$, representa la **tasa de cambio instantánea** de la función en ese punto.
+
+## Definición Formal (por Límite)
+
+La derivada de $f$ en un punto $x$ se define como el siguiente límite, si existe:
+
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+$$
+
+Este límite es conocido como el *cociente diferencial*.
+
+---
+
+# Interpretaciones de la Derivada
+
+1.  **Geométrica:** La derivada de $f$ en $x=a$ es la **pendiente de la recta tangente** a la curva $y=f(x)$ en el punto $(a, f(a))$.
+2.  **Física:** Si $s(t)$ es la posición de un objeto en el tiempo $t$, entonces $s'(t)$ es su **velocidad instantánea** en el instante $t$.
+3.  **Razón de Cambio (General):** En cualquier contexto, $f'(x)$ mide cómo cambia la cantidad $f$ ante pequeños cambios en la variable $x$.
+
+---
+
+# Laboratorio
+
+## Interpretación Geométrica: Recta Tangente y Normal
+
+**Ejemplo 1:** Encontrar la ecuación de la recta tangente a $f(x) = x^2$ en $x=1$.
+
+1.  **Punto de tangencia:** $f(1) = 1$. El punto es $P(1,1)$.
+2.  **Pendiente (derivada):** Usamos la definición de límite.
+    $f'(1) = \lim_{h \to 0} \frac{(1+h)^2 - 1^2}{h} = \lim_{h \to 0} \frac{1 + 2h + h^2 - 1}{h} = \lim_{h \to 0} $
+    
+    $\frac{2h + h^2}{h} = \lim_{h \to 0} (2 + h) = 2$.
+    La pendiente de la tangente es $m_t = 2$.
+3.  **Ecuación de la recta tangente:** Usando la forma punto-pendiente $y - y_0 = m(x - x_0)$:
+    $y - 1 = 2(x - 1) \implies y = 2x - 1$.
+
+**Ecuación de la recta normal:** La recta normal es perpendicular a la tangente, por lo que su pendiente es $m_n = -\frac{1}{m_t} = -\frac{1}{2}$.
+Su ecuación es: $y - 1 = -\frac{1}{2}(x - 1)$.
+
+---
+
+## Interpretación Física: Velocidad Media e Instantánea
+
+**Ejemplo 2:** La posición de una partícula (en metros) está dada por $s(t) = t^2 - 4t + 5$, donde $t \ge 0$ está en segundos.
+
+- **Velocidad media en $[2, 5]$:**
+    $v_{media} = \frac{s(5) - s(2)}{5 - 2} = \frac{(25 - 20 + 5) - (4 - 8 + 5)}{3} = \frac{(10) - (1)}{3} = \frac{9}{3} = 3 \text{ m/s}$.
+    *Significado:* En promedio, la partícula se movió a 3 m/s durante ese intervalo.
+
+- **Velocidad instantánea en $t=2$:**
+    Usamos la definición de derivada.
+    $v(2) = s'(2) = \lim_{h \to 0} \frac{s(2+h) - s(2)}{h}$
+    $s(2+h) = (2+h)^2 - 4(2+h) + 5 = 4 + 4h + h^2 - 8 -4h + 5 = h^2 + 1$
+    $s(2) = 4 - 8 + 5 = 1$
+    $v(2) = \lim_{h \to 0} \frac{(h^2 + 1) - 1}{h} = \lim_{h \to 0} \frac{h^2}{h} = \lim_{h \to 0} h = 0 \text{ m/s}$.
+    *Significado:* En el instante $t=2$ segundos, la partícula está momentáneamente en reposo.
+
+---
+
+## Tasa de Cambio Promedio e Instantánea
+
+**Ejemplo 3:** El volumen de agua en un tanque (en litros) después de $t$ minutos es $V(t) = 100 + 50t - 5t^2$.
+
+- **Tasa de cambio promedio de $t=1$ a $t=3$:**
+    $\frac{\Delta V}{\Delta t} = \frac{V(3)-V(1)}{3-1} = \frac{(100+150-45) - (100+50-5)}{2} = \frac{205 - 145}{2} = \frac{60}{2} = 30 \text{ L/min}$.
+    *Significado:* El volumen aumentó a un ritmo promedio de 30 litros por minuto en ese intervalo.
+
+- **Tasa de cambio instantánea en $t=2$ (la derivada):**
+    $V'(2) = \lim_{h \to 0} \frac{V(2+h) - V(2)}{h}$
+    $V(2) = 100 + 100 - 20 = 180$
+    $V(2+h) = 100 + 50(2+h) - 5(2+h)^2 = 100 + 100 + 50h - 5(4 + 4h + h^2)$
+    $= 200 + 50h - 20 -20h -5h^2 = 180 + 30h -5h^2$
+    $V'(2) = \lim_{h \to 0} \frac{(180 + 30h -5h^2) - 180}{h} = \lim_{h \to 0} \frac{30h -5h^2}{h} = \lim_{h \to 0} (30 -5h) = 30 \text{ L/min}$.
+    *Significado:* Exactamente en el minuto 2, el volumen estaba aumentando a una tasa instantánea de 30 litros por minuto.
+
+# Ejercicios Propuestos
+
+1.  Usa la definición de límite para encontrar la derivada de $f(x) = 3x - 2$.
+2.  Encuentra la ecuación de la recta tangente a $f(x) = \sqrt{x}$ en $x=4$.
+3.  Un objeto se lanza verticalmente. Su altura (en metros) es $h(t) = 20t - 5t^2$. Calcula su velocidad instantánea en $t=1$ s y en $t=3$ s. Interpreta los resultados.
+4.  La población de una colonia de bacterias (en miles) está dada por $P(t) = 2t^2 + 1$, con $t$ en horas. ¿Cuál es la tasa de crecimiento instantáneo en $t=2$ horas?
+5.  Para la función $f(x) = x^2 + 2x$, encuentra la tasa de cambio promedio en el intervalo $[1, 4]$ y la tasa de cambio instantánea en $x=1$.
+6.  Determina el punto sobre la curva $f(x)=x^2$ donde la recta tangente es paralela a la recta $y = 4x - 3$.
+
+# Conclusión
+
+La derivada, vista como un límite, nos proporciona una poderosa herramienta para analizar cambios instantáneos. Su interpretación geométrica y física sienta las bases para aplicaciones más complejas en optimización y modelado.
