@@ -1,0 +1,145 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 5: Reglas de Diferenciación"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+Calcular derivadas mediante la definición de límite puede ser un proceso tedioso. En esta clase, aprenderemos un conjunto de **reglas de diferenciación** que nos permitirán encontrar derivadas de manera eficiente y sistemática para una amplia variedad de funciones.
+
+---
+
+# Reglas Básicas de Diferenciación
+
+A continuación, se presentan las reglas fundamentales. Asumimos que $f$ y $g$ son funciones derivables, y $c$, $n$ son constantes.
+
+1.  **Regla de la Constante:** $\frac{d}{dx}[c] = 0$
+2.  **Regla de la Potencia (Exponente):** $\frac{d}{dx}[x^n] = n x^{n-1}$
+3.  **Regla del Múltiplo Constante:** $\frac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$
+4.  **Regla de la Suma/Diferencia:** $\frac{d}{dx}[f(x) \pm g(x)] = f'(x) \pm g'(x)$
+5.  **Regla del Producto:** $\frac{d}{dx}[f(x) \cdot g(x)] = f'(x)g(x) + f(x)g'(x)$
+6.  **Regla del Cociente:** $\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$
+7.  **Regla de la Cadena (Composición):** $\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$
+
+---
+
+# Laboratorio: Aplicación de las Reglas
+
+## Reglas Básicas (Potencia, Constante, Suma)
+
+**Ejemplo 1:** Derive $f(x) = 5x^3 - 2x + 7$.
+
+Aplicamos suma/resta, múltiplo constante y regla de la potencia.
+$f'(x) = \frac{d}{dx}[5x^3] - \frac{d}{dx}[2x] + \frac{d}{dx}[7]$
+$f'(x) = 5 \cdot (3x^{2}) - 2 \cdot (1x^{0}) + 0$
+$f'(x) = 15x^2 - 2$
+
+---
+
+## Regla del Producto
+
+**Ejemplo 2:** Derive $h(x) = (3x^2 - 1)(2x + 5)$.
+
+Identificamos $f(x) = 3x^2 - 1$ y $g(x) = 2x + 5$.
+$f'(x) = 6x$
+$g'(x) = 2$
+
+Aplicamos la regla del producto:
+$h'(x) = f'(x)g(x) + f(x)g'(x)$
+$h'(x) = (6x)(2x+5) + (3x^2 - 1)(2)$
+$h'(x) = 12x^2 + 30x + 6x^2 - 2$
+$h'(x) = 18x^2 + 30x - 2$
+
+---
+
+## Regla del Cociente
+
+**Ejemplo 3:** Derive $h(x) = \frac{2x^2 - 1}{x^3 + 4}$.
+
+Identificamos $f(x) = 2x^2 - 1$ y $g(x) = x^3 + 4$.
+$f'(x) = 4x$
+$g'(x) = 3x^2$
+
+Aplicamos la regla del cociente:
+$h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$
+$h'(x) = \frac{(4x)(x^3+4) - (2x^2 - 1)(3x^2)}{(x^3+4)^2}$
+$h'(x) = \frac{4x^4 + 16x - (6x^4 - 3x^2)}{(x^3+4)^2}$
+$h'(x) = \frac{4x^4 + 16x - 6x^4 + 3x^2}{(x^3+4)^2}$
+$h'(x) = \frac{-2x^4 + 3x^2 + 16x}{(x^3+4)^2}$
+
+---
+
+## Regla de la Cadena
+
+**Ejemplo 4:** Derive $h(x) = (3x^2 - 2x + 1)^4$.
+
+Identificamos la función externa $f(u) = u^4$ y la interna $g(x) = 3x^2 - 2x + 1$.
+$f'(u) = 4u^3$
+$g'(x) = 6x - 2$
+
+Aplicamos la regla de la cadena: $h'(x) = f'(g(x)) \cdot g'(x)$.
+$h'(x) = 4(3x^2 - 2x + 1)^3 \cdot (6x - 2)$
+$h'(x) = 4(6x - 2)(3x^2 - 2x + 1)^3$
+Podemos factorizar un 2 de $(6x-2)$:
+$h'(x) = 4 \cdot 2(3x-1)(3x^2 - 2x + 1)^3 = 8(3x-1)(3x^2 - 2x + 1)^3$
+
+---
+
+## Combinación de Reglas
+
+**Ejemplo 5:** Derive $h(x) = x^2 \cdot \sqrt{2x+1}$.
+
+Reescribimos: $h(x) = x^2 (2x+1)^{1/2}$. Aquí necesitamos la regla del producto y la regla de la cadena.
+$f(x) = x^2$, $g(x) = (2x+1)^{1/2}$.
+$f'(x) = 2x$.
+Para $g'(x)$, usamos la regla de la cadena: $g'(x) = \frac{1}{2}(2x+1)^{-1/2} \cdot (2) = (2x+1)^{-1/2} = \frac{1}{\sqrt{2x+1}}$.
+
+Aplicamos regla del producto:
+$h'(x) = f'(x)g(x) + f(x)g'(x)$
+$h'(x) = (2x)(2x+1)^{1/2} + (x^2) \cdot (2x+1)^{-1/2}$
+Para simplificar, podemos factorizar el término con el exponente negativo (que es el de menor potencia), es decir, $(2x+1)^{-1/2}$:
+$h'(x) = (2x+1)^{-1/2} \left[ 2x(2x+1) + x^2 \right]$
+$h'(x) = \frac{1}{\sqrt{2x+1}} \left[ 4x^2 + 2x + x^2 \right]$
+$h'(x) = \frac{5x^2 + 2x}{\sqrt{2x+1}}$
+
+# Ejercicios Propuestos
+
+Deriva las siguientes funciones aplicando las reglas correspondientes.
+
+1.  $f(x) = 4x^5 - 3x^2 + x - 10$
+2.  $g(x) = (x^3 + 2x)(x^2 - 1)$ (Producto)
+3.  $h(t) = \frac{t^2 + 1}{t^3 - t}$ (Cociente)
+4.  $p(x) = (2x^3 - 5x)^7$ (Cadena)
+5.  $q(x) = \sqrt{x^4 - 3x}$ (Cadena, reescribiendo como potencia)
+6.  $r(x) = \frac{(3x+1)^2}{x^2-4}$ (Cociente y Cadena)
+7.  $s(x) = x \cdot \ln(x)$ (Producto - aunque el logaritmo se ve la próxima clase, es práctica)
+8.  $f(x) = \frac{1}{(x^2+1)^3}$ (Cadena)
+9.  $g(x) = \left( \frac{x}{x+1} \right)^4$ (Cadena y Cociente)
+10. $h(x) = (x^2 - 1)^3 \cdot (2x + 3)^2$ (Producto y Cadena)
+
+# Conclusión
+
+Hemos establecido un poderoso conjunto de reglas que nos permiten derivar una gran variedad de funciones de forma rápida y eficiente, evitando el uso directo de la definición de límite. La práctica continua es clave para dominar su aplicación.

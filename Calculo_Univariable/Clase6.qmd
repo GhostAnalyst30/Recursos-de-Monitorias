@@ -1,0 +1,173 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 6: Derivada Implícita y Trigonométricas"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta clase ampliaremos nuestro repertorio de derivación. Primero, aprenderemos a derivar funciones que no están explícitamente despejadas (derivación implícita). Luego, incorporaremos las reglas para derivar funciones trigonométricas directas e inversas.
+
+---
+
+# Derivación Implícita
+
+Una función está definida **explícitamente** cuando está despejada la variable dependiente (ej. $y = f(x)$). Está definida **implícitamente** cuando la relación entre $x$ e $y$ está dada por una ecuación no despejada (ej. $x^2 + y^2 = 25$).
+
+## Técnica de Derivación Implícita
+
+Para derivar una ecuación implícita, consideramos que $y$ es una función de $x$ ($y=y(x)$) y aplicamos la regla de la cadena.
+
+1.  Derivamos ambos lados de la ecuación con respecto a $x$.
+2.  Agrupamos todos los términos con $\frac{dy}{dx}$ en un lado de la ecuación.
+3.  Factorizamos y despejamos $\frac{dy}{dx}$.
+
+---
+
+# Derivada de Funciones Trigonométricas
+
+## Trigonométricas Directas
+
+- $\frac{d}{dx}[\sin x] = \cos x$
+- $\frac{d}{dx}[\cos x] = -\sin x$
+- $\frac{d}{dx}[\tan x] = \sec^2 x$
+- $\frac{d}{dx}[\cot x] = -\csc^2 x$
+- $\frac{d}{dx}[\sec x] = \sec x \tan x$
+- $\frac{d}{dx}[\csc x] = -\csc x \cot x$
+
+## Trigonométricas Inversas
+
+- $\frac{d}{dx}[\arcsin x] = \frac{1}{\sqrt{1-x^2}}$
+- $\frac{d}{dx}[\arccos x] = -\frac{1}{\sqrt{1-x^2}}$
+- $\frac{d}{dx}[\arctan x] = \frac{1}{1+x^2}$
+- $\frac{d}{dx}[\text{arccot } x] = -\frac{1}{1+x^2}$
+- $\frac{d}{dx}[\text{arcsec } x] = \frac{1}{|x|\sqrt{x^2-1}}$
+- $\frac{d}{dx}[\text{arccsc } x] = -\frac{1}{|x|\sqrt{x^2-1}}$
+
+---
+
+# Laboratorio
+
+## Derivación Implícita
+
+**Ejemplo 1:** Encuentre $\frac{dy}{dx}$ para $x^2 + y^2 = 25$.
+
+1.  Derivamos ambos lados con respecto a $x$:
+    $\frac{d}{dx}[x^2] + \frac{d}{dx}[y^2] = \frac{d}{dx}[25]$
+    $2x + 2y \cdot \frac{dy}{dx} = 0$ (Por regla de la cadena en $y^2$).
+2.  Despejamos $\frac{dy}{dx}$:
+    $2y \frac{dy}{dx} = -2x$
+    $\frac{dy}{dx} = -\frac{2x}{2y} = -\frac{x}{y}$, donde $y \neq 0$.
+
+---
+
+**Ejemplo 2:** Encuentre la ecuación de la recta tangente a $x^2 + y^2 = 25$ en el punto $(3, -4)$.
+
+1.  Usamos la derivada implícita del ejemplo anterior: $\frac{dy}{dx} = -\frac{x}{y}$.
+2.  Evaluamos la pendiente en $(3, -4)$: $m = -\frac{3}{-4} = \frac{3}{4}$.
+3.  Ecuación de la recta: $y - (-4) = \frac{3}{4}(x - 3) \implies y + 4 = \frac{3}{4}(x - 3)$.
+
+---
+
+**Ejemplo 3:** Encuentre $\frac{dy}{dx}$ para $\sin(xy) = x^2$.
+
+1.  Derivamos ambos lados. En la izquierda, usamos regla de la cadena (función externa $\sin(u)$, interna $u=xy$) y luego regla del producto para derivar $xy$.
+    $\cos(xy) \cdot \frac{d}{dx}[xy] = 2x$
+    $\cos(xy) \cdot (1\cdot y + x \cdot \frac{dy}{dx}) = 2x$
+2.  Distribuimos y agrupamos términos con $\frac{dy}{dx}$:
+    $y\cos(xy) + x\cos(xy) \frac{dy}{dx} = 2x$
+    $x\cos(xy) \frac{dy}{dx} = 2x - y\cos(xy)$
+3.  Despejamos:
+    $\frac{dy}{dx} = \frac{2x - y\cos(xy)}{x\cos(xy)}$, donde $x\cos(xy) \neq 0$.
+
+---
+
+## Derivada de Funciones Trigonométricas Directas
+
+**Ejemplo 4:** Derive $f(x) = x^2 \sin x$.
+
+Usamos regla del producto. $u=x^2$, $v=\sin x$.
+$f'(x) = (2x)(\sin x) + (x^2)(\cos x) = 2x\sin x + x^2\cos x$.
+
+---
+
+**Ejemplo 5:** Derive $g(x) = \frac{\cos x}{1 - \sin x}$.
+
+Usamos regla del cociente. $u=\cos x$, $v=1-\sin x$.
+$u' = -\sin x$, $v' = -\cos x$.
+$g'(x) = \frac{(-\sin x)(1-\sin x) - (\cos x)(-\cos x)}{(1-\sin x)^2}$
+$g'(x) = \frac{-\sin x + \sin^2 x + \cos^2 x}{(1-\sin x)^2}$
+Usamos la identidad $\sin^2 x + \cos^2 x = 1$:
+$g'(x) = \frac{-\sin x + 1}{(1-\sin x)^2} = \frac{1-\sin x}{(1-\sin x)^2} = \frac{1}{1-\sin x}$, para $\sin x \neq 1$.
+
+---
+
+**Ejemplo 6 (Ángulo compuesto):** Derive $h(x) = \tan(3x^2 - x)$.
+
+Usamos regla de la cadena. Función externa $\tan(u)$, interna $u=3x^2 - x$.
+$h'(x) = \sec^2(3x^2 - x) \cdot \frac{d}{dx}[3x^2 - x] = \sec^2(3x^2 - x) \cdot (6x - 1)$.
+
+---
+
+## Derivada de Funciones Trigonométricas Inversas
+
+**Ejemplo 7 (Ángulo sencillo):** Derive $f(x) = \arcsin(2x)$.
+
+Usamos regla de la cadena. $\frac{d}{dx}[\arcsin u] = \frac{1}{\sqrt{1-u^2}} \cdot \frac{du}{dx}$.
+$f'(x) = \frac{1}{\sqrt{1-(2x)^2}} \cdot 2 = \frac{2}{\sqrt{1-4x^2}}$, para $|x| < \frac{1}{2}$.
+
+---
+
+**Ejemplo 8 (Ángulo complejo):** Derive $g(x) = \arctan(e^x + x^2)$.
+
+Usamos regla de la cadena. $\frac{d}{dx}[\arctan u] = \frac{1}{1+u^2} \cdot \frac{du}{dx}$.
+$g'(x) = \frac{1}{1+(e^x + x^2)^2} \cdot \frac{d}{dx}[e^x + x^2] = \frac{e^x + 2x}{1+(e^x + x^2)^2}$.
+
+---
+
+**Ejemplo 9 (Combinación):** Derive $p(x) = \sqrt{x} \cdot \text{arcsec}(x)$.
+
+Usamos regla del producto con $u = x^{1/2}$, $v = \text{arcsec}(x)$.
+$u' = \frac{1}{2}x^{-1/2} = \frac{1}{2\sqrt{x}}$.
+$v' = \frac{1}{|x|\sqrt{x^2-1}}$ (para $x > 1$).
+$p'(x) = \left(\frac{1}{2\sqrt{x}}\right) \text{arcsec}(x) + \sqrt{x} \left( \frac{1}{|x|\sqrt{x^2-1}} \right)$.
+
+# Ejercicios Propuestos
+
+1.  Encuentra $\frac{dy}{dx}$ para $x^3 + y^3 = 6xy$.
+2.  Halla la pendiente de la recta tangente a la curva $x^2 + xy + y^2 = 7$ en el punto $(1,2)$.
+3.  Deriva $f(x) = \sin(4x) \cdot \cos(x^2)$.
+4.  Deriva $g(t) = \frac{\tan t}{\sec t + 1}$.
+5.  Deriva $h(x) = \csc( \sqrt{x} )$.
+6.  Deriva $p(x) = \arccos(3x)$.
+7.  Deriva $q(x) = \arctan(\ln x)$.
+8.  Deriva $r(x) = \text{arcsec}(x^3 + 1)$.
+9.  Deriva $s(x) = \frac{\arcsin x}{\arccos x}$ (Regla del cociente).
+10. Encuentra $\frac{dy}{dx}$ para $\cos(x+y) = y \sin x$.
+
+# Conclusión
+
+Hemos expandido nuestra caja de herramientas para incluir la derivación implícita, esencial para ecuaciones no lineales, y las reglas para funciones trigonométricas. Estos son componentes cruciales para modelar fenómenos periódicos y relaciones complejas.

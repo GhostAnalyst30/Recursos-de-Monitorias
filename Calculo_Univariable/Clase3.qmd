@@ -5,7 +5,6 @@ author:
   - name: "Emmanuel Ascendra"
     affiliation: "Ingeniería Mecatrónica"
     email: "eascendra@utb.edu.co"
-date: "Marzo 2026"
 
 lang: es
 

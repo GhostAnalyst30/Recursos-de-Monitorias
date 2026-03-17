@@ -1,0 +1,136 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 9: Optimización y Razones de Cambio"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+Llegamos a la culminación práctica del cálculo diferencial: la **optimización** y el estudio de **razones de cambio relacionadas**. En esta clase, aplicaremos todo lo aprendido para resolver problemas del mundo real donde buscamos maximizar o minimizar una magnitud, o donde necesitamos encontrar cómo cambia una variable en relación con otra.
+
+---
+
+# Conceptos Clave
+
+## Optimización
+
+El objetivo es encontrar los **valores máximos y mínimos (absolutos)** de una función continua en un intervalo cerrado, o en un contexto geométrico/económico.
+
+**Estrategia para Problemas de Optimización:**
+
+1.  **Comprender:** Leer el problema cuidadosamente. Identificar la magnitud a optimizar (maximizar/minimizar).
+2.  **Diagrama y Variables:** Dibujar un diagrama si es posible. Definir las variables involucradas.
+3.  **Función Objetivo:** Escribir una ecuación para la magnitud a optimizar en función de **una sola variable**.
+4.  **Dominio:** Determinar el dominio razonable de la variable (restricciones del problema).
+5.  **Optimizar:** Derivar la función objetivo, encontrar puntos críticos ($f'(x)=0$ o donde no existe).
+6.  **Evaluar:** Evaluar la función objetivo en los puntos críticos y en los extremos del dominio (si es un intervalo cerrado) para determinar el valor máximo o mínimo absoluto.
+7.  **Responder:** Interpretar el resultado en el contexto del problema.
+
+## Razones de Cambio Relacionadas
+
+Aquí, varias cantidades cambian con el tiempo y están relacionadas por una ecuación. Conociendo la velocidad de cambio de una, podemos encontrar la velocidad de cambio de otra.
+
+**Estrategia para Razones de Cambio:**
+
+1.  **Comprender y Diagrama:** Identificar las variables que cambian con el tiempo.
+2.  **Ecuación Relacional:** Escribir una ecuación que relacione las variables en un instante cualquiera.
+3.  **Derivar Implícitamente:** Derivar ambos lados de la ecuación con respecto al tiempo $t$ (usando regla de la cadena). Esto introduce las razones de cambio ($\frac{dx}{dt}, \frac{dy}{dt}$).
+4.  **Sustituir:** Sustituir los valores conocidos de las variables y las razones de cambio en el instante de interés.
+5.  **Resolver:** Despejar la razón de cambio desconocida.
+
+---
+
+# Laboratorio: Problemas de Optimización
+
+**Ejemplo 1 (Geometría):** Se quiere construir una caja abierta (sin tapa) a partir de una lámina cuadrada de 12 cm de lado, recortando cuadrados iguales en las esquinas y doblando los lados. ¿De qué tamaño deben ser los cuadrados recortados para maximizar el volumen?
+
+1.  **Variables:** Sea $x$ la longitud (cm) del lado del cuadrado recortado. $0 < x < 6$.
+2.  **Función Objetivo (Volumen):** Alto = $x$. Largo y ancho de la base = $12 - 2x$.
+    $V(x) = x(12-2x)^2 = x(144 - 48x + 4x^2) = 4x^3 - 48x^2 + 144x$.
+3.  **Derivar y Puntos Críticos:** $V'(x) = 12x^2 - 96x + 144$. Igualamos a 0 y dividimos entre 12:
+    $x^2 - 8x + 12 = 0 \implies (x-2)(x-6)=0$.
+    Puntos críticos: $x=2$ y $x=6$.
+4.  **Dominio y Evaluación:** El dominio práctico es $(0, 6)$. $x=6$ está en el borde (da volumen 0) y $x=2$ está dentro.
+    - $V(2) = 4(8) - 48(4) + 144(2) = 32 - 192 + 288 = 128 \text{ cm}^3$.
+    - Evaluamos en los extremos del dominio (aunque abiertos, nos acercamos): $V(0)=0$, $V(6)=0$.
+5.  **Conclusión:** El volumen máximo se obtiene recortando cuadrados de **2 cm** de lado.
+
+---
+
+**Ejemplo 2 (Economía):** El costo de producción de $x$ unidades de un producto es $C(x) = 5000 + 10x + 0.05x^2$ dólares. El ingreso por vender $x$ unidades es $I(x) = 40x - 0.01x^2$ dólares. Determina el nivel de producción que maximiza la utilidad.
+
+1.  **Función Objetivo (Utilidad):** $U(x) = I(x) - C(x)$.
+    $U(x) = (40x - 0.01x^2) - (5000 + 10x + 0.05x^2) = 30x - 0.06x^2 - 5000$.
+2.  **Derivar y Puntos Críticos:** $U'(x) = 30 - 0.12x$. Igualamos a 0:
+    $30 - 0.12x = 0 \implies 0.12x = 30 \implies x = 250$ unidades.
+3.  **Verificar (Segunda derivada):** $U''(x) = -0.12 < 0$, lo que confirma que es un máximo.
+4.  **Conclusión:** La utilidad se maximiza produciendo y vendiendo **250 unidades**.
+
+---
+
+# Laboratorio: Problemas de Razones de Cambio
+
+**Ejemplo 3 (Escalera):** Una escalera de 10 metros está apoyada contra una pared vertical. Si la parte inferior de la escalera se desliza alejándose de la pared a una velocidad de 1 m/s, ¿qué tan rápido se desliza la parte superior de la escalera cuando la base está a 6 metros de la pared?
+
+1.  **Variables y Diagrama:** Sea $x$ la distancia de la base a la pared, $y$ la distancia de la parte superior al suelo. La escalera mide 10 m (hipotenusa).
+2.  **Ecuación Relacional:** $x^2 + y^2 = 10^2 = 100$.
+3.  **Derivar implícitamente con respecto al tiempo $t$:**
+    $2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0 \implies x \frac{dx}{dt} + y \frac{dy}{dt} = 0$.
+4.  **Datos conocidos:** $\frac{dx}{dt} = 1$ m/s (positivo porque $x$ aumenta). En el instante de interés, $x = 6$ m.
+    Calculamos $y$ con la ecuación: $6^2 + y^2 = 100 \implies y^2 = 64 \implies y = 8$ m (positivo).
+5.  **Sustituir y resolver:**
+    $(6)(1) + (8) \frac{dy}{dt} = 0 \implies 8 \frac{dy}{dt} = -6 \implies \frac{dy}{dt} = -\frac{6}{8} = -0.75$ m/s.
+6.  **Interpretación:** La parte superior de la escalera se desliza hacia abajo a una velocidad de **0.75 m/s** (el signo negativo indica que $y$ disminuye).
+
+---
+
+**Ejemplo 4 (Globo):** Se infla un globo esférico de modo que su volumen aumenta a razón de $100 \text{ cm}^3/\text{s}$. ¿Con qué rapidez aumenta el radio del globo cuando el diámetro es de 50 cm?
+
+1.  **Variables:** $V$ = volumen, $r$ = radio.
+2.  **Ecuación Relacional:** $V = \frac{4}{3}\pi r^3$.
+3.  **Derivar implícitamente con respecto a $t$:**
+    $\frac{dV}{dt} = \frac{4}{3}\pi \cdot 3r^2 \frac{dr}{dt} = 4\pi r^2 \frac{dr}{dt}$.
+4.  **Datos conocidos:** $\frac{dV}{dt} = 100 \text{ cm}^3/\text{s}$. El diámetro es 50 cm, por lo tanto $r = 25$ cm.
+5.  **Sustituir y resolver:**
+    $100 = 4\pi (25)^2 \frac{dr}{dt} = 4\pi (625) \frac{dr}{dt} = 2500\pi \frac{dr}{dt}$.
+    $\frac{dr}{dt} = \frac{100}{2500\pi} = \frac{1}{25\pi} \approx 0.01273 \text{ cm/s}$.
+6.  **Interpretación:** El radio del globo aumenta a una tasa de aproximadamente **0.0127 cm/s** en ese instante.
+
+# Ejercicios Propuestos
+
+**Optimización:**
+
+1.  Se quiere cercar un terreno rectangular junto a un río, de modo que no necesita cerca en el lado del río. Si se dispone de 400 metros de cerca, ¿cuáles son las dimensiones del terreno de área máxima?
+2.  Halla dos números positivos cuya suma sea 20 y cuyo producto sea máximo.
+3.  Una hoja de papel debe contener 18 cm² de texto impreso. Los márgenes superior e inferior son de 2 cm cada uno, y los laterales de 1 cm cada uno. ¿Cuáles deben ser las dimensiones de la hoja para minimizar la cantidad de papel utilizado?
+
+**Razones de Cambio:**
+
+4.  Un tanque de agua tiene forma de cono invertido (vértice hacia abajo) con radio de 2 m y altura de 4 m. Si se bombea agua al tanque a razón de $2 \text{ m}^3/\text{min}$, encuentra la rapidez con la que sube el nivel del agua cuando la profundidad es de 3 m. (Volumen del cono: $V = \frac{1}{3}\pi r^2 h$; necesitas relacionar $r$ y $h$ por triángulos semejantes).
+5.  Un automóvil viaja hacia el este a 60 km/h y un camión viaja hacia el norte a 80 km/h. Ambos se dirigen hacia la intersección de sus caminos. ¿A qué velocidad se acercan los vehículos entre sí cuando el auto está a 0.3 km de la intersección y el camión a 0.4 km de la misma?
+
+# Conclusión
+
+Hemos culminado el núcleo del cálculo diferencial aplicándolo a problemas de optimización y razones de cambio. Estas habilidades son directamente transferibles a disciplinas como la física, la economía y la ingeniería, donde modelar y predecir el comportamiento de sistemas es fundamental.

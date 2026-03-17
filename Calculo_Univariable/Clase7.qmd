@@ -1,0 +1,130 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 7: Derivadas de Funciones Trascendentes"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+Continuamos con el estudio de la derivada de funciones trascendentes. En esta clase nos enfocaremos en las funciones logarítmicas, exponenciales e hiperbólicas, que son fundamentales en diversos campos de la ingeniería y las ciencias.
+
+---
+
+# Reglas de Derivación
+
+## Funciones Exponenciales y Logarítmicas
+
+- **Exponencial natural:** $\frac{d}{dx}[e^x] = e^x$
+- **Exponencial general:** $\frac{d}{dx}[a^x] = a^x \ln a$
+- **Logaritmo natural:** $\frac{d}{dx}[\ln x] = \frac{1}{x}, \quad x > 0$
+- **Logaritmo general:** $\frac{d}{dx}[\log_a x] = \frac{1}{x \ln a}$
+
+*(Para argumentos compuestos, se aplica la regla de la cadena)*
+
+## Funciones Hiperbólicas (Para Ingeniería)
+
+- $\frac{d}{dx}[\sinh x] = \cosh x$
+- $\frac{d}{dx}[\cosh x] = \sinh x$
+- $\frac{d}{dx}[\tanh x] = \text{sech}^2 x$
+- $\frac{d}{dx}[\coth x] = -\text{csch}^2 x$
+- $\frac{d}{dx}[\text{sech } x] = -\text{sech } x \tanh x$
+- $\frac{d}{dx}[\text{csch } x] = -\text{csch } x \coth x$
+
+---
+
+# Laboratorio
+
+## Derivadas de Funciones Exponenciales
+
+**Ejemplo 1 (Exponencial natural simple):** Derive $f(x) = e^x$.
+$f'(x) = e^x$.
+
+**Ejemplo 2 (Exponencial natural compuesta):** Derive $g(x) = e^{3x^2 - 2x}$.
+Usamos regla de la cadena: $g'(x) = e^{3x^2 - 2x} \cdot \frac{d}{dx}[3x^2 - 2x] = e^{3x^2 - 2x} \cdot (6x - 2)$.
+
+**Ejemplo 3 (Exponencial general):** Derive $h(x) = 5^{x}$.
+$h'(x) = 5^{x} \ln 5$.
+
+**Ejemplo 4 (Exponencial general compuesta):** Derive $p(x) = 2^{\sin x}$.
+$p'(x) = 2^{\sin x} \ln 2 \cdot \frac{d}{dx}[\sin x] = 2^{\sin x} \ln 2 \cdot \cos x$.
+
+---
+
+## Derivadas de Funciones Logarítmicas
+
+**Ejemplo 5 (Logaritmo natural simple):** Derive $f(x) = \ln x$.
+$f'(x) = \frac{1}{x}$.
+
+**Ejemplo 6 (Logaritmo natural compuesto):** Derive $g(x) = \ln(x^3 + 2x)$.
+Usamos regla de la cadena: $g'(x) = \frac{1}{x^3+2x} \cdot \frac{d}{dx}[x^3+2x] = \frac{3x^2 + 2}{x^3+2x}$.
+
+**Ejemplo 7 (Logaritmo general):** Derive $h(x) = \log_{10}(x)$.
+$h'(x) = \frac{1}{x \ln 10}$.
+
+**Ejemplo 8 (Combinación Producto y Logaritmo):** Derive $p(x) = x^2 \ln x$.
+Usamos regla del producto: $u=x^2$, $v=\ln x$.
+$p'(x) = (2x)(\ln x) + (x^2)(\frac{1}{x}) = 2x \ln x + x$.
+
+---
+
+**Ejemplo 9 (Situación problema - Crecimiento poblacional):** La población de una bacteria sigue el modelo $P(t) = 1000 e^{0.1t}$, donde $t$ está en horas. ¿Cuál es la tasa de crecimiento instantáneo en $t=5$ horas?
+
+1.  Derivamos la función: $P'(t) = 1000 \cdot e^{0.1t} \cdot 0.1 = 100 e^{0.1t}$.
+2.  Evaluamos en $t=5$: $P'(5) = 100 e^{0.1 \cdot 5} = 100 e^{0.5}$.
+3.  Aproximadamente: $100 \cdot 1.6487 = 164.87$ bacterias por hora.
+    *Interpretación:* En el instante $t=5$ horas, la población está creciendo a una tasa de aproximadamente 165 bacterias por hora.
+
+---
+
+## Derivadas de Funciones Hiperbólicas
+
+**Ejemplo 10 (Hiperbólica simple):** Derive $f(x) = \sinh x$.
+$f'(x) = \cosh x$.
+
+**Ejemplo 11 (Hiperbólica compuesta):** Derive $g(x) = \cosh(4x^2)$.
+Usamos regla de la cadena: $g'(x) = \sinh(4x^2) \cdot \frac{d}{dx}[4x^2] = \sinh(4x^2) \cdot 8x = 8x \sinh(4x^2)$.
+
+**Ejemplo 12 (Combinación):** Derive $h(x) = e^x \tanh x$.
+Usamos regla del producto: $u=e^x$, $v=\tanh x$.
+$h'(x) = (e^x)(\tanh x) + (e^x)(\text{sech}^2 x) = e^x (\tanh x + \text{sech}^2 x)$.
+
+# Ejercicios Propuestos
+
+Derive las siguientes funciones.
+
+1.  $f(x) = e^{5x}$
+2.  $g(x) = 3^{x^2}$
+3.  $h(t) = \ln(4t + 1)$
+4.  $p(x) = \log_2(x^3 - x)$
+5.  $q(x) = x e^{-x}$
+6.  $r(x) = \frac{\ln x}{x^2}$ (Cociente)
+7.  $s(x) = \sinh(3x)$
+8.  $u(x) = \cosh(x) \cdot \sinh(x)$ (Producto)
+9.  $v(x) = \tanh(\sqrt{x})$ (Cadena)
+10. **Problema de aplicación:** La carga en un capacitor en un circuito RC es $q(t) = Q(1 - e^{-t/RC})$. Encuentra la corriente $i(t) = q'(t)$.
+
+# Conclusión
+
+Hemos completado el estudio de las reglas de derivación para las principales funciones trascendentes. La combinación de estas reglas con las vistas en clases anteriores nos permite abordar una amplia gama de problemas teóricos y aplicados en ingeniería.
