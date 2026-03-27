@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen — Cálculo Univariable</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #faf8f3;
+    --cream: #f0ece0;
+    --accent: #c8450a;
+    --accent2: #1a4f72;
+    --gold: #d4a012;
+    --muted: #7a7060;
+    --border: #d8d0bc;
+    --correct: #2d7a4f;
+    --wrong: #b83030;
+    --unanswered: #8a7a60;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+  /* HEADER */
+  header {
+    background: var(--ink); color: var(--paper);
+    padding: 2.4rem 2rem 2rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.02) 40px,rgba(255,255,255,.02) 41px);
+  }
+  .header-tag { font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:.6rem; }
+  header h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.4rem); font-weight:900; line-height:1.1; margin-bottom:.5rem; }
+  header p { font-size:.9rem; color:rgba(250,248,243,.6); font-weight:300; }
+
+  /* PROGRESS */
+  #progress-wrap {
+    background:var(--cream); border-bottom:1px solid var(--border);
+    padding:.9rem 2rem; display:flex; align-items:center; gap:1.2rem;
+    position:sticky; top:0; z-index:50;
+  }
+  #progress-bar-outer { flex:1; height:6px; background:var(--border); border-radius:99px; overflow:hidden; }
+  #progress-bar-inner { height:100%; width:0%; background:linear-gradient(90deg,var(--accent2),var(--accent)); border-radius:99px; transition:width .4s ease; }
+  #progress-label { font-size:.78rem; font-weight:600; color:var(--muted); white-space:nowrap; }
+
+  /* EXAM BODY */
+  #exam-body { max-width:860px; margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+
+  /* SECTION HEADER */
+  .section-header { margin:3rem 0 1.5rem; display:flex; align-items:center; gap:1rem; }
+  .section-number { font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:900; color:var(--border); line-height:1; min-width:2.5rem; }
+  .section-info h2 { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; }
+  .section-info span { font-size:.75rem; color:var(--muted); font-weight:400; letter-spacing:.05em; }
+  .section-divider { height:2px; background:linear-gradient(90deg,var(--ink) 0%,transparent 100%); margin-bottom:1.5rem; }
+
+  /* QUESTION CARD */
+  .q-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.5rem 1.6rem 1.3rem; margin-bottom:1.2rem; transition:border-color .2s,box-shadow .2s; position:relative; }
+  .q-card:hover { border-color:#bbb; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+  .q-num { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem; }
+  .q-text { font-size:1rem; font-weight:500; line-height:1.55; margin-bottom:1.1rem; }
+  .options { display:flex; flex-direction:column; gap:.55rem; }
+  .option { display:flex; align-items:flex-start; gap:.7rem; cursor:pointer; padding:.65rem .9rem; border-radius:7px; border:1.5px solid var(--border); background:var(--paper); transition:all .15s; font-size:.9rem; line-height:1.4; }
+  .option:hover { border-color:var(--accent2); background:#e8f1f8; }
+  .option input[type="radio"] { display:none; }
+  .option-letter { font-family:'Playfair Display',serif; font-size:.9rem; font-weight:700; color:var(--muted); min-width:1.2rem; }
+  .option.selected { border-color:var(--accent2); background:#dff0fb; }
+  .option.selected .option-letter { color:var(--accent2); }
+  .q-status-dot { position:absolute; top:.9rem; right:1rem; width:10px; height:10px; border-radius:50%; background:var(--border); transition:background .2s; }
+  .q-card.answered .q-status-dot { background:var(--accent2); }
+
+  /* SUBMIT */
+  #submit-section { text-align:center; margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--border); }
+  #submit-section p { font-size:.85rem; color:var(--muted); margin-bottom:1.2rem; }
+  #btn-submit { background:var(--ink); color:var(--paper); font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:600; letter-spacing:.04em; padding:.9rem 3rem; border:none; border-radius:8px; cursor:pointer; transition:background .2s,transform .1s; }
+  #btn-submit:hover { background:var(--accent); transform:translateY(-1px); }
+
+  /* DASHBOARD */
+  #dashboard { display:none; max-width:900px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
+  .dash-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; text-align:center; margin-bottom:.4rem; }
+  .dash-sub { text-align:center; color:var(--muted); font-size:.88rem; margin-bottom:2.5rem; }
+
+  /* RING */
+  .score-ring-wrap { display:flex; justify-content:center; align-items:center; gap:3rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+  .ring-container { position:relative; width:170px; height:170px; }
+  .ring-container svg { transform:rotate(-90deg); }
+  .ring-text { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:'Playfair Display',serif; }
+  .ring-score { font-size:2.4rem; font-weight:900; line-height:1; }
+  .ring-label { font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:.2rem; }
+  .grade-badge { font-family:'Playfair Display',serif; font-size:4rem; font-weight:900; line-height:1; }
+  .grade-label { font-size:.8rem; color:var(--muted); text-align:center; margin-top:.2rem; }
+  .grade-desc { font-size:1.1rem; font-weight:600; text-align:center; }
+
+  /* STATS */
+  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2.5rem; }
+  .stat-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.2rem; text-align:center; }
+  .stat-val { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; line-height:1; margin-bottom:.3rem; }
+  .stat-card:nth-child(1) .stat-val { color:var(--correct); }
+  .stat-card:nth-child(2) .stat-val { color:var(--wrong); }
+  .stat-card:nth-child(3) .stat-val { color:var(--unanswered); }
+  .stat-lbl { font-size:.75rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+
+  /* SECTION BARS */
+  .section-breakdown { margin-bottom:2.5rem; }
+  .sb-title { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; margin-bottom:1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--ink); }
+  .sb-row { display:flex; align-items:center; gap:1rem; margin-bottom:.85rem; }
+  .sb-name { font-size:.82rem; font-weight:500; min-width:220px; }
+  .sb-bar-outer { flex:1; height:8px; background:var(--cream); border-radius:99px; overflow:hidden; }
+  .sb-bar-inner { height:100%; border-radius:99px; transition:width 1s ease; }
+  .sb-frac { font-size:.8rem; font-weight:700; min-width:3rem; text-align:right; }
+
+  /* REVIEW */
+  .review-title { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; margin-bottom:1.2rem; padding-bottom:.6rem; border-bottom:2px solid var(--ink); }
+  .review-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.3rem 1.5rem; margin-bottom:1rem; border-left:4px solid var(--border); }
+  .review-card.rc-correct { border-left-color:var(--correct); }
+  .review-card.rc-wrong   { border-left-color:var(--wrong); }
+  .review-card.rc-skip    { border-left-color:var(--unanswered); }
+  .rc-top { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:.7rem; }
+  .rc-qtext { font-size:.92rem; font-weight:500; line-height:1.45; flex:1; }
+  .rc-badge { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .65rem; border-radius:99px; white-space:nowrap; }
+  .badge-correct { background:#d4f0e2; color:var(--correct); }
+  .badge-wrong   { background:#fce8e8; color:var(--wrong); }
+  .badge-skip    { background:#ede9e0; color:var(--unanswered); }
+  .rc-detail { font-size:.82rem; color:var(--muted); line-height:1.5; }
+  .rc-correct-ans { color:var(--correct); font-weight:600; }
+  .rc-wrong-ans   { color:var(--wrong); text-decoration:line-through; }
+
+  #btn-retry { display:block; margin:2.5rem auto 0; background:var(--ink); color:var(--paper); font-family:'DM Sans',sans-serif; font-size:.95rem; font-weight:600; padding:.85rem 2.5rem; border:none; border-radius:8px; cursor:pointer; transition:background .2s; }
+  #btn-retry:hover { background:var(--accent2); }
+
+  @media(max-width:600px){ .sb-name{min-width:120px;font-size:.72rem;} .score-ring-wrap{gap:1.5rem;} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Cálculo Univariable · Emmanuel Ascendra</div>
+  <h1>Examen de Comprensión</h1>
+  <p>30 preguntas · 6 secciones · Selección múltiple</p>
+</header>
+
+<div id="progress-wrap">
+  <div id="progress-bar-outer"><div id="progress-bar-inner"></div></div>
+  <div id="progress-label">0 / 30 respondidas</div>
+</div>
+
+<div id="exam-body">
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN I — Fundamentos de Funciones Matemáticas
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header">
+    <div class="section-number">I</div>
+    <div class="section-info">
+      <h2>Fundamentos de Funciones Matemáticas</h2>
+      <span>Preguntas 1 – 5</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-1">
+    <div class="q-num">Pregunta 1</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es el <strong>dominio</strong> de \(f(x) = \dfrac{1}{x - 5}\)?</div>
+    <div class="options" data-q="1" data-correct="B">
+      <label class="option"><input type="radio" name="q1" value="A"><span class="option-letter">A</span>\(\mathbb{R}\)</label>
+      <label class="option"><input type="radio" name="q1" value="B"><span class="option-letter">B</span>\(\mathbb{R} - \{5\}\)</label>
+      <label class="option"><input type="radio" name="q1" value="C"><span class="option-letter">C</span>\([5, +\infty)\)</label>
+      <label class="option"><input type="radio" name="q1" value="D"><span class="option-letter">D</span>\((-\infty, 5)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-2">
+    <div class="q-num">Pregunta 2</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es el <strong>rango</strong> de \(f(x) = x^2 + 1\)?</div>
+    <div class="options" data-q="2" data-correct="C">
+      <label class="option"><input type="radio" name="q2" value="A"><span class="option-letter">A</span>\(\mathbb{R}\)</label>
+      <label class="option"><input type="radio" name="q2" value="B"><span class="option-letter">B</span>\([0, +\infty)\)</label>
+      <label class="option"><input type="radio" name="q2" value="C"><span class="option-letter">C</span>\([1, +\infty)\)</label>
+      <label class="option"><input type="radio" name="q2" value="D"><span class="option-letter">D</span>\((-1, +\infty)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-3">
+    <div class="q-num">Pregunta 3</div><div class="q-status-dot"></div>
+    <div class="q-text">Si \(f(x) = 3x^2 - 2x + 1\), ¿cuánto vale \(f(2)\)?</div>
+    <div class="options" data-q="3" data-correct="B">
+      <label class="option"><input type="radio" name="q3" value="A"><span class="option-letter">A</span>7</label>
+      <label class="option"><input type="radio" name="q3" value="B"><span class="option-letter">B</span>9</label>
+      <label class="option"><input type="radio" name="q3" value="C"><span class="option-letter">C</span>11</label>
+      <label class="option"><input type="radio" name="q3" value="D"><span class="option-letter">D</span>5</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-4">
+    <div class="q-num">Pregunta 4</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es el <strong>dominio</strong> de \(f(x) = \sqrt{x - 3}\)?</div>
+    <div class="options" data-q="4" data-correct="A">
+      <label class="option"><input type="radio" name="q4" value="A"><span class="option-letter">A</span>\([3, +\infty)\)</label>
+      <label class="option"><input type="radio" name="q4" value="B"><span class="option-letter">B</span>\((-\infty, 3]\)</label>
+      <label class="option"><input type="radio" name="q4" value="C"><span class="option-letter">C</span>\(\mathbb{R} - \{3\}\)</label>
+      <label class="option"><input type="radio" name="q4" value="D"><span class="option-letter">D</span>\((3, +\infty)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-5">
+    <div class="q-num">Pregunta 5</div><div class="q-status-dot"></div>
+    <div class="q-text">Una función \(f: A \to B\) asigna a cada elemento de \(A\):</div>
+    <div class="options" data-q="5" data-correct="C">
+      <label class="option"><input type="radio" name="q5" value="A"><span class="option-letter">A</span>Varios elementos de \(B\) a la vez</label>
+      <label class="option"><input type="radio" name="q5" value="B"><span class="option-letter">B</span>Ningún elemento de \(B\)</label>
+      <label class="option"><input type="radio" name="q5" value="C"><span class="option-letter">C</span>Un único elemento de \(B\)</label>
+      <label class="option"><input type="radio" name="q5" value="D"><span class="option-letter">D</span>El mismo elemento que el de \(A\)</label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN II — Estudio del Límite
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:3.5rem">
+    <div class="section-number">II</div>
+    <div class="section-info">
+      <h2>Estudio del Límite de una Función</h2>
+      <span>Preguntas 6 – 10</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-6">
+    <div class="q-num">Pregunta 6</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuánto vale \(\displaystyle\lim_{x \to 2}(2x + 1)\)?</div>
+    <div class="options" data-q="6" data-correct="C">
+      <label class="option"><input type="radio" name="q6" value="A"><span class="option-letter">A</span>4</label>
+      <label class="option"><input type="radio" name="q6" value="B"><span class="option-letter">B</span>3</label>
+      <label class="option"><input type="radio" name="q6" value="C"><span class="option-letter">C</span>5</label>
+      <label class="option"><input type="radio" name="q6" value="D"><span class="option-letter">D</span>No existe</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-7">
+    <div class="q-num">Pregunta 7</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuánto vale \(\displaystyle\lim_{x \to 1} \dfrac{x^2 - 1}{x - 1}\)?</div>
+    <div class="options" data-q="7" data-correct="B">
+      <label class="option"><input type="radio" name="q7" value="A"><span class="option-letter">A</span>No existe, hay indeterminación</label>
+      <label class="option"><input type="radio" name="q7" value="B"><span class="option-letter">B</span>2</label>
+      <label class="option"><input type="radio" name="q7" value="C"><span class="option-letter">C</span>0</label>
+      <label class="option"><input type="radio" name="q7" value="D"><span class="option-letter">D</span>1</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-8">
+    <div class="q-num">Pregunta 8</div><div class="q-status-dot"></div>
+    <div class="q-text">Para que \(\displaystyle\lim_{x \to c} f(x) = L\) exista, es necesario que:</div>
+    <div class="options" data-q="8" data-correct="D">
+      <label class="option"><input type="radio" name="q8" value="A"><span class="option-letter">A</span>\(f(c) = L\) obligatoriamente</label>
+      <label class="option"><input type="radio" name="q8" value="B"><span class="option-letter">B</span>\(f(x) = L\) para todo \(x\) cercano a \(c\)</label>
+      <label class="option"><input type="radio" name="q8" value="C"><span class="option-letter">C</span>\(f(c)\) esté definida</label>
+      <label class="option"><input type="radio" name="q8" value="D"><span class="option-letter">D</span>Los límites laterales por izquierda y derecha sean iguales a \(L\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-9">
+    <div class="q-num">Pregunta 9</div><div class="q-status-dot"></div>
+    <div class="q-text">La representación <strong>numérica</strong> del límite consiste en:</div>
+    <div class="options" data-q="9" data-correct="A">
+      <label class="option"><input type="radio" name="q9" value="A"><span class="option-letter">A</span>Construir una tabla de valores de \(f(x)\) con \(x\) cercanos a \(c\)</label>
+      <label class="option"><input type="radio" name="q9" value="B"><span class="option-letter">B</span>Dibujar la gráfica de la función</label>
+      <label class="option"><input type="radio" name="q9" value="C"><span class="option-letter">C</span>Factorizar algebraicamente la expresión</label>
+      <label class="option"><input type="radio" name="q9" value="D"><span class="option-letter">D</span>Describir con palabras el comportamiento</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-10">
+    <div class="q-num">Pregunta 10</div><div class="q-status-dot"></div>
+    <div class="q-text">Al evaluar \(\displaystyle\lim_{x \to 3} \dfrac{x^2 - 9}{x - 3}\) algebraicamente, el resultado es:</div>
+    <div class="options" data-q="10" data-correct="B">
+      <label class="option"><input type="radio" name="q10" value="A"><span class="option-letter">A</span>3</label>
+      <label class="option"><input type="radio" name="q10" value="B"><span class="option-letter">B</span>6</label>
+      <label class="option"><input type="radio" name="q10" value="C"><span class="option-letter">C</span>0</label>
+      <label class="option"><input type="radio" name="q10" value="D"><span class="option-letter">D</span>No existe</label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN III — Continuidad
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:3.5rem">
+    <div class="section-number">III</div>
+    <div class="section-info">
+      <h2>Estudio de la Continuidad de una Función</h2>
+      <span>Preguntas 11 – 15</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-11">
+    <div class="q-num">Pregunta 11</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuántas condiciones deben cumplirse para que \(f\) sea continua en \(x = c\)?</div>
+    <div class="options" data-q="11" data-correct="C">
+      <label class="option"><input type="radio" name="q11" value="A"><span class="option-letter">A</span>Una</label>
+      <label class="option"><input type="radio" name="q11" value="B"><span class="option-letter">B</span>Dos</label>
+      <label class="option"><input type="radio" name="q11" value="C"><span class="option-letter">C</span>Tres</label>
+      <label class="option"><input type="radio" name="q11" value="D"><span class="option-letter">D</span>Cuatro</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-12">
+    <div class="q-num">Pregunta 12</div><div class="q-status-dot"></div>
+    <div class="q-text">La función \(f(x) = \dfrac{1}{x-3}\) en \(x = 3\) tiene una discontinuidad de tipo:</div>
+    <div class="options" data-q="12" data-correct="A">
+      <label class="option"><input type="radio" name="q12" value="A"><span class="option-letter">A</span>Infinita (asíntota vertical)</label>
+      <label class="option"><input type="radio" name="q12" value="B"><span class="option-letter">B</span>Evitable (removible)</label>
+      <label class="option"><input type="radio" name="q12" value="C"><span class="option-letter">C</span>De salto</label>
+      <label class="option"><input type="radio" name="q12" value="D"><span class="option-letter">D</span>No es discontinua</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-13">
+    <div class="q-num">Pregunta 13</div><div class="q-status-dot"></div>
+    <div class="q-text">Según el <strong>Teorema del Valor Intermedio</strong>, si \(f\) es continua en \([a,b]\) y \(k\) está entre \(f(a)\) y \(f(b)\), entonces:</div>
+    <div class="options" data-q="13" data-correct="B">
+      <label class="option"><input type="radio" name="q13" value="A"><span class="option-letter">A</span>\(f(a) = f(b)\)</label>
+      <label class="option"><input type="radio" name="q13" value="B"><span class="option-letter">B</span>Existe al menos un \(c \in [a,b]\) tal que \(f(c) = k\)</label>
+      <label class="option"><input type="radio" name="q13" value="C"><span class="option-letter">C</span>\(f\) es derivable en todo \([a,b]\)</label>
+      <label class="option"><input type="radio" name="q13" value="D"><span class="option-letter">D</span>\(k = 0\) siempre</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-14">
+    <div class="q-num">Pregunta 14</div><div class="q-status-dot"></div>
+    <div class="q-text">Una discontinuidad <strong>evitable</strong> (removible) ocurre cuando:</div>
+    <div class="options" data-q="14" data-correct="C">
+      <label class="option"><input type="radio" name="q14" value="A"><span class="option-letter">A</span>Los límites laterales son distintos</label>
+      <label class="option"><input type="radio" name="q14" value="B"><span class="option-letter">B</span>Uno de los límites laterales es infinito</label>
+      <label class="option"><input type="radio" name="q14" value="C"><span class="option-letter">C</span>El límite existe pero no coincide con el valor de la función (o esta no está definida)</label>
+      <label class="option"><input type="radio" name="q14" value="D"><span class="option-letter">D</span>La función es constante en el punto</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-15">
+    <div class="q-num">Pregunta 15</div><div class="q-status-dot"></div>
+    <div class="q-text">La función \(f(x) = 3x^2 - 2x + 1\), ¿es continua en \(x = 2\)?</div>
+    <div class="options" data-q="15" data-correct="A">
+      <label class="option"><input type="radio" name="q15" value="A"><span class="option-letter">A</span>Sí, porque \(f(2)\) existe, el límite existe y ambos son iguales a 9</label>
+      <label class="option"><input type="radio" name="q15" value="B"><span class="option-letter">B</span>No, porque el límite no existe en \(x=2\)</label>
+      <label class="option"><input type="radio" name="q15" value="C"><span class="option-letter">C</span>Sí, pero solo porque es un polinomio, sin necesidad de verificar</label>
+      <label class="option"><input type="radio" name="q15" value="D"><span class="option-letter">D</span>No, porque \(f(2) \neq 0\)</label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN IV — Derivada de una Función
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:3.5rem">
+    <div class="section-number">IV</div>
+    <div class="section-info">
+      <h2>Derivada de una Función</h2>
+      <span>Preguntas 16 – 20</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-16">
+    <div class="q-num">Pregunta 16</div><div class="q-status-dot"></div>
+    <div class="q-text">La derivada de \(f\) en \(x\) se define formalmente como:</div>
+    <div class="options" data-q="16" data-correct="A">
+      <label class="option"><input type="radio" name="q16" value="A"><span class="option-letter">A</span>\(\displaystyle f'(x) = \lim_{h \to 0} \dfrac{f(x+h) - f(x)}{h}\)</label>
+      <label class="option"><input type="radio" name="q16" value="B"><span class="option-letter">B</span>\(\displaystyle f'(x) = \lim_{x \to 0} \dfrac{f(x+h) - f(x)}{h}\)</label>
+      <label class="option"><input type="radio" name="q16" value="C"><span class="option-letter">C</span>\(\displaystyle f'(x) = \dfrac{f(x+h) - f(x)}{h}\)</label>
+      <label class="option"><input type="radio" name="q16" value="D"><span class="option-letter">D</span>\(\displaystyle f'(x) = \lim_{h \to \infty} \dfrac{f(x+h) - f(x)}{h}\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-17">
+    <div class="q-num">Pregunta 17</div><div class="q-status-dot"></div>
+    <div class="q-text">Geométricamente, \(f'(a)\) representa la pendiente de:</div>
+    <div class="options" data-q="17" data-correct="C">
+      <label class="option"><input type="radio" name="q17" value="A"><span class="option-letter">A</span>La recta secante a \(f\) en \((a, f(a))\)</label>
+      <label class="option"><input type="radio" name="q17" value="B"><span class="option-letter">B</span>La recta normal a \(f\) en \((a, f(a))\)</label>
+      <label class="option"><input type="radio" name="q17" value="C"><span class="option-letter">C</span>La recta tangente a la curva en \((a, f(a))\)</label>
+      <label class="option"><input type="radio" name="q17" value="D"><span class="option-letter">D</span>El eje horizontal en \(x = a\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-18">
+    <div class="q-num">Pregunta 18</div><div class="q-status-dot"></div>
+    <div class="q-text">Usando la definición de límite, ¿cuál es \(f'(1)\) si \(f(x) = x^2\)?</div>
+    <div class="options" data-q="18" data-correct="B">
+      <label class="option"><input type="radio" name="q18" value="A"><span class="option-letter">A</span>1</label>
+      <label class="option"><input type="radio" name="q18" value="B"><span class="option-letter">B</span>2</label>
+      <label class="option"><input type="radio" name="q18" value="C"><span class="option-letter">C</span>4</label>
+      <label class="option"><input type="radio" name="q18" value="D"><span class="option-letter">D</span>0</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-19">
+    <div class="q-num">Pregunta 19</div><div class="q-status-dot"></div>
+    <div class="q-text">Si \(s(t)\) representa la posición de un objeto, entonces \(s'(t)\) representa su:</div>
+    <div class="options" data-q="19" data-correct="D">
+      <label class="option"><input type="radio" name="q19" value="A"><span class="option-letter">A</span>Aceleración instantánea</label>
+      <label class="option"><input type="radio" name="q19" value="B"><span class="option-letter">B</span>Velocidad media en \([0, t]\)</label>
+      <label class="option"><input type="radio" name="q19" value="C"><span class="option-letter">C</span>Desplazamiento total</label>
+      <label class="option"><input type="radio" name="q19" value="D"><span class="option-letter">D</span>Velocidad instantánea en el instante \(t\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-20">
+    <div class="q-num">Pregunta 20</div><div class="q-status-dot"></div>
+    <div class="q-text">La ecuación de la recta tangente a \(f(x) = x^2\) en \(x = 1\) es:</div>
+    <div class="options" data-q="20" data-correct="A">
+      <label class="option"><input type="radio" name="q20" value="A"><span class="option-letter">A</span>\(y = 2x - 1\)</label>
+      <label class="option"><input type="radio" name="q20" value="B"><span class="option-letter">B</span>\(y = x + 1\)</label>
+      <label class="option"><input type="radio" name="q20" value="C"><span class="option-letter">C</span>\(y = 2x + 1\)</label>
+      <label class="option"><input type="radio" name="q20" value="D"><span class="option-letter">D</span>\(y = x - 1\)</label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN V — Reglas de Diferenciación
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:3.5rem">
+    <div class="section-number">V</div>
+    <div class="section-info">
+      <h2>Reglas de Diferenciación</h2>
+      <span>Preguntas 21 – 25</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-21">
+    <div class="q-num">Pregunta 21</div><div class="q-status-dot"></div>
+    <div class="q-text">Según la <strong>regla de la potencia</strong>, ¿cuál es la derivada de \(f(x) = x^5\)?</div>
+    <div class="options" data-q="21" data-correct="A">
+      <label class="option"><input type="radio" name="q21" value="A"><span class="option-letter">A</span>\(5x^4\)</label>
+      <label class="option"><input type="radio" name="q21" value="B"><span class="option-letter">B</span>\(x^4\)</label>
+      <label class="option"><input type="radio" name="q21" value="C"><span class="option-letter">C</span>\(5x^5\)</label>
+      <label class="option"><input type="radio" name="q21" value="D"><span class="option-letter">D</span>\(4x^5\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-22">
+    <div class="q-num">Pregunta 22</div><div class="q-status-dot"></div>
+    <div class="q-text">Derive \(h(x) = (3x^2 - 1)(2x + 5)\) usando la <strong>regla del producto</strong>.</div>
+    <div class="options" data-q="22" data-correct="D">
+      <label class="option"><input type="radio" name="q22" value="A"><span class="option-letter">A</span>\(6x(2x+5)\)</label>
+      <label class="option"><input type="radio" name="q22" value="B"><span class="option-letter">B</span>\(12x^2 + 30x\)</label>
+      <label class="option"><input type="radio" name="q22" value="C"><span class="option-letter">C</span>\(18x^2 + 30x + 2\)</label>
+      <label class="option"><input type="radio" name="q22" value="D"><span class="option-letter">D</span>\(18x^2 + 30x - 2\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-23">
+    <div class="q-num">Pregunta 23</div><div class="q-status-dot"></div>
+    <div class="q-text">La <strong>regla de la cadena</strong> establece que si \(h(x) = f(g(x))\), entonces:</div>
+    <div class="options" data-q="23" data-correct="B">
+      <label class="option"><input type="radio" name="q23" value="A"><span class="option-letter">A</span>\(h'(x) = f'(x) \cdot g'(x)\)</label>
+      <label class="option"><input type="radio" name="q23" value="B"><span class="option-letter">B</span>\(h'(x) = f'(g(x)) \cdot g'(x)\)</label>
+      <label class="option"><input type="radio" name="q23" value="C"><span class="option-letter">C</span>\(h'(x) = f(g'(x))\)</label>
+      <label class="option"><input type="radio" name="q23" value="D"><span class="option-letter">D</span>\(h'(x) = f'(x) + g'(x)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-24">
+    <div class="q-num">Pregunta 24</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es la derivada de \(f(x) = 5x^3 - 2x + 7\)?</div>
+    <div class="options" data-q="24" data-correct="C">
+      <label class="option"><input type="radio" name="q24" value="A"><span class="option-letter">A</span>\(5x^2 - 2\)</label>
+      <label class="option"><input type="radio" name="q24" value="B"><span class="option-letter">B</span>\(15x^2 - 2x\)</label>
+      <label class="option"><input type="radio" name="q24" value="C"><span class="option-letter">C</span>\(15x^2 - 2\)</label>
+      <label class="option"><input type="radio" name="q24" value="D"><span class="option-letter">D</span>\(15x^3 - 2\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-25">
+    <div class="q-num">Pregunta 25</div><div class="q-status-dot"></div>
+    <div class="q-text">Usando la <strong>regla del cociente</strong>, la derivada de \(\dfrac{f(x)}{g(x)}\) es:</div>
+    <div class="options" data-q="25" data-correct="A">
+      <label class="option"><input type="radio" name="q25" value="A"><span class="option-letter">A</span>\(\dfrac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\)</label>
+      <label class="option"><input type="radio" name="q25" value="B"><span class="option-letter">B</span>\(\dfrac{f'(x)g(x) + f(x)g'(x)}{[g(x)]^2}\)</label>
+      <label class="option"><input type="radio" name="q25" value="C"><span class="option-letter">C</span>\(\dfrac{f'(x)}{g'(x)}\)</label>
+      <label class="option"><input type="radio" name="q25" value="D"><span class="option-letter">D</span>\(\dfrac{f(x)g'(x) - f'(x)g(x)}{[g(x)]^2}\)</label>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SECCIÓN VI — Derivada Implícita y Trigonométricas
+  ══════════════════════════════════════════════════ -->
+  <div class="section-header" style="margin-top:3.5rem">
+    <div class="section-number">VI</div>
+    <div class="section-info">
+      <h2>Derivada Implícita y Trigonométricas</h2>
+      <span>Preguntas 26 – 30</span>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="q-card" id="card-26">
+    <div class="q-num">Pregunta 26</div><div class="q-status-dot"></div>
+    <div class="q-text">Para \(x^2 + y^2 = 25\), al derivar implícitamente con respecto a \(x\), se obtiene \(\dfrac{dy}{dx} =\)</div>
+    <div class="options" data-q="26" data-correct="A">
+      <label class="option"><input type="radio" name="q26" value="A"><span class="option-letter">A</span>\(-\dfrac{x}{y}\)</label>
+      <label class="option"><input type="radio" name="q26" value="B"><span class="option-letter">B</span>\(\dfrac{x}{y}\)</label>
+      <label class="option"><input type="radio" name="q26" value="C"><span class="option-letter">C</span>\(-\dfrac{y}{x}\)</label>
+      <label class="option"><input type="radio" name="q26" value="D"><span class="option-letter">D</span>\(\dfrac{2x}{2y}\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-27">
+    <div class="q-num">Pregunta 27</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es la derivada de \(f(x) = \sin(x)\)?</div>
+    <div class="options" data-q="27" data-correct="B">
+      <label class="option"><input type="radio" name="q27" value="A"><span class="option-letter">A</span>\(-\cos(x)\)</label>
+      <label class="option"><input type="radio" name="q27" value="B"><span class="option-letter">B</span>\(\cos(x)\)</label>
+      <label class="option"><input type="radio" name="q27" value="C"><span class="option-letter">C</span>\(\tan(x)\)</label>
+      <label class="option"><input type="radio" name="q27" value="D"><span class="option-letter">D</span>\(\sec^2(x)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-28">
+    <div class="q-num">Pregunta 28</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es la derivada de \(f(x) = \arctan(x)\)?</div>
+    <div class="options" data-q="28" data-correct="C">
+      <label class="option"><input type="radio" name="q28" value="A"><span class="option-letter">A</span>\(\dfrac{1}{\sqrt{1-x^2}}\)</label>
+      <label class="option"><input type="radio" name="q28" value="B"><span class="option-letter">B</span>\(-\dfrac{1}{1+x^2}\)</label>
+      <label class="option"><input type="radio" name="q28" value="C"><span class="option-letter">C</span>\(\dfrac{1}{1+x^2}\)</label>
+      <label class="option"><input type="radio" name="q28" value="D"><span class="option-letter">D</span>\(\sec^2(x)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-29">
+    <div class="q-num">Pregunta 29</div><div class="q-status-dot"></div>
+    <div class="q-text">¿Cuál es la derivada de \(f(x) = \tan(x)\)?</div>
+    <div class="options" data-q="29" data-correct="D">
+      <label class="option"><input type="radio" name="q29" value="A"><span class="option-letter">A</span>\(\sin(x)\)</label>
+      <label class="option"><input type="radio" name="q29" value="B"><span class="option-letter">B</span>\(-\csc^2(x)\)</label>
+      <label class="option"><input type="radio" name="q29" value="C"><span class="option-letter">C</span>\(\cos(x)\)</label>
+      <label class="option"><input type="radio" name="q29" value="D"><span class="option-letter">D</span>\(\sec^2(x)\)</label>
+    </div>
+  </div>
+
+  <div class="q-card" id="card-30">
+    <div class="q-num">Pregunta 30</div><div class="q-status-dot"></div>
+    <div class="q-text">Al derivar implícitamente \(\sin(xy) = x^2\) con respecto a \(x\), el primer paso correcto es aplicar:</div>
+    <div class="options" data-q="30" data-correct="B">
+      <label class="option"><input type="radio" name="q30" value="A"><span class="option-letter">A</span>Solo la regla del producto al lado izquierdo</label>
+      <label class="option"><input type="radio" name="q30" value="B"><span class="option-letter">B</span>La regla de la cadena al lado izquierdo (\(\cos(xy)\) multiplicado por la derivada de \(xy\))</label>
+      <label class="option"><input type="radio" name="q30" value="C"><span class="option-letter">C</span>Derivar directamente \(\sin\) como si fuera constante</label>
+      <label class="option"><input type="radio" name="q30" value="D"><span class="option-letter">D</span>Dividir ambos lados entre \(\sin\) antes de derivar</label>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div id="submit-section">
+    <p id="submit-warning">Aún hay preguntas sin responder. Puedes enviar igual o completar el examen.</p>
+    <button id="btn-submit" onclick="submitExam()">Enviar Examen</button>
+  </div>
+
+</div><!-- /exam-body -->
+
+<!-- ══════════════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════════════ -->
+<div id="dashboard">
+  <div class="dash-title">Resultados del Examen</div>
+  <div class="dash-sub">Cálculo Univariable · Revisión completa de 30 preguntas</div>
+
+  <div class="score-ring-wrap">
+    <div class="ring-container">
+      <svg width="170" height="170" viewBox="0 0 170 170">
+        <circle cx="85" cy="85" r="72" fill="none" stroke="#e8e0d0" stroke-width="12"/>
+        <circle id="ring-circle" cx="85" cy="85" r="72" fill="none"
+          stroke="#1a4f72" stroke-width="12" stroke-linecap="round"
+          stroke-dasharray="452.4" stroke-dashoffset="452.4"/>
+      </svg>
+      <div class="ring-text">
+        <div class="ring-score" id="ring-score-text">0/30</div>
+        <div class="ring-label">Correctas</div>
+      </div>
+    </div>
+    <div>
+      <div class="grade-badge" id="grade-letter">—</div>
+      <div class="grade-label">Calificación</div>
+      <div class="grade-desc" id="grade-desc" style="margin-top:.6rem">—</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-val" id="stat-correct">0</div><div class="stat-lbl">Correctas</div></div>
+    <div class="stat-card"><div class="stat-val" id="stat-wrong">0</div><div class="stat-lbl">Incorrectas</div></div>
+    <div class="stat-card"><div class="stat-val" id="stat-skip">0</div><div class="stat-lbl">Sin responder</div></div>
+  </div>
+
+  <div class="section-breakdown">
+    <div class="sb-title">Desempeño por Sección</div>
+    <div id="section-bars"></div>
+  </div>
+
+  <div>
+    <div class="review-title">Revisión Detallada</div>
+    <div id="review-list"></div>
+  </div>
+
+  <button id="btn-retry" onclick="retryExam()">↺ Intentar de nuevo</button>
+</div>
+
+<script>
+const TOTAL = 30;
+
+const correctAnswers = {
+  1:'B', 2:'C', 3:'B', 4:'A', 5:'C',
+  6:'C', 7:'B', 8:'D', 9:'A', 10:'B',
+  11:'C', 12:'A', 13:'B', 14:'C', 15:'A',
+  16:'A', 17:'C', 18:'B', 19:'D', 20:'A',
+  21:'A', 22:'D', 23:'B', 24:'C', 25:'A',
+  26:'A', 27:'B', 28:'C', 29:'D', 30:'B'
+};
+
+const sections = [
+  { name: "Fundamentos de Funciones", qs: [1,2,3,4,5] },
+  { name: "Límite de una Función",     qs: [6,7,8,9,10] },
+  { name: "Continuidad",               qs: [11,12,13,14,15] },
+  { name: "Derivada de una Función",   qs: [16,17,18,19,20] },
+  { name: "Reglas de Diferenciación",  qs: [21,22,23,24,25] },
+  { name: "Derivada Implícita y Trig.",qs: [26,27,28,29,30] }
+];
+
+const questionTexts = {
+  1:"Dominio de f(x) = 1/(x−5)",
+  2:"Rango de f(x) = x² + 1",
+  3:"Evaluación f(2) con f(x) = 3x² − 2x + 1",
+  4:"Dominio de f(x) = √(x−3)",
+  5:"Definición de función matemática",
+  6:"lím x→2 (2x+1)",
+  7:"lím x→1 (x²−1)/(x−1)",
+  8:"Condición de existencia del límite",
+  9:"Representación numérica del límite",
+  10:"lím x→3 (x²−9)/(x−3)",
+  11:"Número de condiciones de continuidad",
+  12:"Tipo de discontinuidad de f(x) = 1/(x−3) en x=3",
+  13:"Teorema del Valor Intermedio",
+  14:"Definición de discontinuidad evitable",
+  15:"¿Es f(x) = 3x²−2x+1 continua en x=2?",
+  16:"Definición formal de la derivada",
+  17:"Interpretación geométrica de f'(a)",
+  18:"Derivada de f(x) = x² en x = 1",
+  19:"Interpretación física de s'(t)",
+  20:"Recta tangente a f(x) = x² en x = 1",
+  21:"Regla de la potencia: derivada de x⁵",
+  22:"Regla del producto: h(x) = (3x²−1)(2x+5)",
+  23:"Enunciado de la regla de la cadena",
+  24:"Derivada de f(x) = 5x³ − 2x + 7",
+  25:"Fórmula de la regla del cociente",
+  26:"Derivación implícita: x² + y² = 25",
+  27:"Derivada de sin(x)",
+  28:"Derivada de arctan(x)",
+  29:"Derivada de tan(x)",
+  30:"Derivación implícita de sin(xy) = x²"
+};
+
+const answerLabels = {
+  1: {A:'ℝ', B:'ℝ − {5}', C:'[5,+∞)', D:'(−∞,5)'},
+  2: {A:'ℝ', B:'[0,+∞)', C:'[1,+∞)', D:'(−1,+∞)'},
+  3: {A:'7', B:'9', C:'11', D:'5'},
+  4: {A:'[3,+∞)', B:'(−∞,3]', C:'ℝ − {3}', D:'(3,+∞)'},
+  5: {A:'Varios elementos de B', B:'Ningún elemento de B', C:'Un único elemento de B', D:'El mismo elemento que A'},
+  6: {A:'4', B:'3', C:'5', D:'No existe'},
+  7: {A:'No existe, indeterminación', B:'2', C:'0', D:'1'},
+  8: {A:'f(c) = L obligatoriamente', B:'f(x) = L para todo x cercano', C:'f(c) esté definida', D:'Límites laterales iguales a L'},
+  9: {A:'Tabla de valores con x cercanos a c', B:'Dibujar la gráfica', C:'Factorizar algebraicamente', D:'Describir con palabras'},
+  10:{A:'3', B:'6', C:'0', D:'No existe'},
+  11:{A:'Una', B:'Dos', C:'Tres', D:'Cuatro'},
+  12:{A:'Infinita (asíntota vertical)', B:'Evitable', C:'De salto', D:'No es discontinua'},
+  13:{A:'f(a) = f(b)', B:'∃c ∈ [a,b]: f(c) = k', C:'f es derivable en [a,b]', D:'k = 0 siempre'},
+  14:{A:'Los límites laterales son distintos', B:'Un límite lateral es infinito', C:'El límite existe pero no coincide con f(c)', D:'La función es constante'},
+  15:{A:'Sí, f(2)=9 y lím = 9', B:'No, el límite no existe', C:'Sí, solo por ser polinomio', D:'No, porque f(2) ≠ 0'},
+  16:{A:'f\'(x) = lím h→0 [f(x+h)−f(x)]/h', B:'lím x→0 ...', C:'Cociente sin límite', D:'lím h→∞ ...'},
+  17:{A:'Recta secante', B:'Recta normal', C:'Recta tangente en (a, f(a))', D:'Eje horizontal'},
+  18:{A:'1', B:'2', C:'4', D:'0'},
+  19:{A:'Aceleración instantánea', B:'Velocidad media', C:'Desplazamiento total', D:'Velocidad instantánea'},
+  20:{A:'y = 2x − 1', B:'y = x + 1', C:'y = 2x + 1', D:'y = x − 1'},
+  21:{A:'5x⁴', B:'x⁴', C:'5x⁵', D:'4x⁵'},
+  22:{A:'6x(2x+5)', B:'12x²+30x', C:'18x²+30x+2', D:'18x²+30x−2'},
+  23:{A:"f'(x)·g'(x)", B:"f'(g(x))·g'(x)", C:"f(g'(x))", D:"f'(x)+g'(x)"},
+  24:{A:'5x²−2', B:'15x²−2x', C:'15x²−2', D:'15x³−2'},
+  25:{A:'[f\'g − fg\']/g²', B:'[f\'g + fg\']/g²', C:'f\'/g\'', D:'[fg\' − f\'g]/g²'},
+  26:{A:'−x/y', B:'x/y', C:'−y/x', D:'2x/2y'},
+  27:{A:'−cos(x)', B:'cos(x)', C:'tan(x)', D:'sec²(x)'},
+  28:{A:'1/√(1−x²)', B:'−1/(1+x²)', C:'1/(1+x²)', D:'sec²(x)'},
+  29:{A:'sin(x)', B:'−csc²(x)', C:'cos(x)', D:'sec²(x)'},
+  30:{A:'Solo regla del producto', B:'Regla de la cadena: cos(xy)·(xy)\'', C:'Derivar sin como constante', D:'Dividir entre sin antes de derivar'}
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────
+const userAnswers = {};
+
+function updateProgress() {
+  const n = Object.keys(userAnswers).length;
+  const pct = (n / TOTAL) * 100;
+  document.getElementById('progress-bar-inner').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${n} / ${TOTAL} respondidas`;
+  const rem = TOTAL - n;
+  document.getElementById('submit-warning').textContent = rem > 0
+    ? `Aún hay ${rem} pregunta(s) sin responder. Puedes enviar igual.`
+    : '¡Todas las preguntas respondidas! Listo para enviar.';
+}
+
+document.querySelectorAll('.options').forEach(og => {
+  const q = parseInt(og.dataset.q);
+  og.querySelectorAll('.option').forEach(label => {
+    label.addEventListener('click', () => {
+      og.querySelectorAll('.option').forEach(l => l.classList.remove('selected'));
+      label.classList.add('selected');
+      label.querySelector('input').checked = true;
+      const first = userAnswers[q] === undefined;
+      userAnswers[q] = label.querySelector('input').value;
+      document.getElementById('card-' + q).classList.add('answered');
+      updateProgress();
+    });
+  });
+});
+
+// ─── SUBMIT ────────────────────────────────────────────────────────────────
+function submitExam() {
+  document.getElementById('exam-body').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+  buildDashboard();
+  document.getElementById('dashboard').style.display = 'block';
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function buildDashboard() {
+  let correct=0, wrong=0, skip=0;
+  const results={};
+  for(let q=1;q<=TOTAL;q++){
+    const ua=userAnswers[q], ca=correctAnswers[q];
+    if(!ua){ skip++; results[q]='skip'; }
+    else if(ua===ca){ correct++; results[q]='correct'; }
+    else{ wrong++; results[q]='wrong'; }
+  }
+
+  // Ring
+  const pct = correct/TOTAL;
+  const circ = 452.4;
+  const color = pct>=.7?'#2d7a4f':pct>=.5?'#d4a012':'#b83030';
+  const ring = document.getElementById('ring-circle');
+  ring.style.stroke = color;
+  ring.style.strokeDashoffset = circ;
+  setTimeout(()=>{ ring.style.transition='stroke-dashoffset 1.2s ease'; ring.style.strokeDashoffset = circ*(1-pct); },100);
+
+  document.getElementById('ring-score-text').textContent = `${correct}/${TOTAL}`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-wrong').textContent = wrong;
+  document.getElementById('stat-skip').textContent = skip;
+
+  const score = Math.round(pct*100);
+  let grade, desc;
+  if(score>=90){grade='A';desc='¡Excelente dominio!';}
+  else if(score>=80){grade='B';desc='Muy buen desempeño';}
+  else if(score>=70){grade='C';desc='Desempeño aceptable';}
+  else if(score>=60){grade='D';desc='Necesitas repasar';}
+  else{grade='F';desc='Requiere estudio profundo';}
+  document.getElementById('grade-letter').textContent = grade;
+  document.getElementById('grade-letter').style.color = color;
+  document.getElementById('grade-desc').textContent = desc;
+
+  // Section bars
+  const barsEl = document.getElementById('section-bars');
+  barsEl.innerHTML='';
+  sections.forEach(sec=>{
+    const total=sec.qs.length;
+    const c=sec.qs.filter(q=>results[q]==='correct').length;
+    const p=c/total;
+    const bc=p>=.7?'#2d7a4f':p>=.5?'#d4a012':'#b83030';
+    barsEl.innerHTML+=`
+      <div class="sb-row">
+        <div class="sb-name">${sec.name}</div>
+        <div class="sb-bar-outer"><div class="sb-bar-inner" style="width:0%;background:${bc}" data-target="${Math.round(p*100)}"></div></div>
+        <div class="sb-frac" style="color:${bc}">${c}/${total}</div>
+      </div>`;
+  });
+  setTimeout(()=>{
+    document.querySelectorAll('.sb-bar-inner').forEach(b=>{
+      b.style.transition='width 1s ease'; b.style.width=b.dataset.target+'%';
+    });
+  },200);
+
+  // Review
+  const rev=document.getElementById('review-list');
+  rev.innerHTML='';
+  for(let q=1;q<=TOTAL;q++){
+    const r=results[q], ua=userAnswers[q], ca=correctAnswers[q];
+    const bc=r==='correct'?'badge-correct':r==='wrong'?'badge-wrong':'badge-skip';
+    const bt=r==='correct'?'✓ Correcta':r==='wrong'?'✗ Incorrecta':'— Sin responder';
+    let detail='';
+    if(r==='correct') detail=`<span class="rc-correct-ans">Respuesta correcta: ${answerLabels[q][ca]}</span>`;
+    else if(r==='wrong') detail=`Tu respuesta: <span class="rc-wrong-ans">${answerLabels[q][ua]}</span> &nbsp;·&nbsp; Correcta: <span class="rc-correct-ans">${answerLabels[q][ca]}</span>`;
+    else detail=`Sin responder &nbsp;·&nbsp; Correcta: <span class="rc-correct-ans">${answerLabels[q][ca]}</span>`;
+    rev.innerHTML+=`
+      <div class="review-card rc-${r}">
+        <div class="rc-top">
+          <div class="rc-qtext"><strong>P${q}.</strong> ${questionTexts[q]}</div>
+          <div class="rc-badge ${bc}">${bt}</div>
+        </div>
+        <div class="rc-detail">${detail}</div>
+      </div>`;
+  }
+  if(window.MathJax) MathJax.typesetPromise([document.getElementById('dashboard')]);
+}
+
+function retryExam(){
+  for(let k in userAnswers) delete userAnswers[k];
+  document.querySelectorAll('.option').forEach(l=>l.classList.remove('selected'));
+  document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+  document.querySelectorAll('.q-card').forEach(c=>c.classList.remove('answered'));
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('exam-body').style.display='block';
+  document.getElementById('progress-wrap').style.display='flex';
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+updateProgress();
+</script>
+</body>
+</html>
