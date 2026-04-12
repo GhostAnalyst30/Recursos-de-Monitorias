@@ -1,0 +1,221 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 14: Longitud de Arco e Integrales Impropias"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta semana estudiaremos dos temas adicionales del cálculo integral. Primero, la **longitud del arco de una curva**, que nos permite calcular la longitud de un segmento de curva. Segundo, las **integrales impropias**, que extienden el concepto de integral definida a intervalos infinitos o a funciones con discontinuidades.
+
+---
+
+# Longitud del Arco de una Curva
+
+La longitud $L$ de una curva $y = f(x)$ desde $x = a$ hasta $x = b$ está dada por:
+
+$$
+L = \int_{a}^{b} \sqrt{1 + [f'(x)]^2} \, dx
+$$
+
+Si la curva está dada en forma paramétrica $x = x(t)$, $y = y(t)$ para $t \in [\alpha, \beta]$:
+
+$$
+L = \int_{\alpha}^{\beta} \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2} \, dt
+$$
+
+---
+
+# Integrales Impropias
+
+## Tipo I: Intervalos Infinitos
+
+$$
+\int_{a}^{\infty} f(x) \, dx = \lim_{b \to \infty} \int_{a}^{b} f(x) \, dx
+$$
+$$
+\int_{-\infty}^{b} f(x) \, dx = \lim_{a \to -\infty} \int_{a}^{b} f(x) \, dx
+$$
+$$
+\int_{-\infty}^{\infty} f(x) \, dx = \int_{-\infty}^{c} f(x) \, dx + \int_{c}^{\infty} f(x) \, dx
+$$
+
+La integral converge si el límite existe (es finito); diverge si el límite es infinito o no existe.
+
+## Tipo II: Discontinuidades en el Integrando
+
+Si $f$ tiene una discontinuidad infinita en $x = c$ con $a < c < b$:
+
+$$
+\int_{a}^{b} f(x) \, dx = \lim_{t \to c^{-}} \int_{a}^{t} f(x) \, dx + \lim_{t \to c^{+}} \int_{t}^{b} f(x) \, dx
+$$
+
+---
+
+# Laboratorio
+
+## Longitud del Arco
+
+**Ejemplo 1:** Calcular la longitud del arco de $f(x) = x^{3/2}$ en $[0, 4]$.
+
+1.  Calculamos $f'(x) = \frac{3}{2} x^{1/2} = \frac{3}{2} \sqrt{x}$.
+2.  $[f'(x)]^2 = \frac{9}{4} x$.
+3.  Aplicamos la fórmula:
+    $$
+    L = \int_{0}^{4} \sqrt{1 + \frac{9}{4}x} \, dx
+    $$
+4.  Hacemos sustitución: $u = 1 + \frac{9}{4}x$, $du = \frac{9}{4} dx \implies dx = \frac{4}{9} du$.
+    Cuando $x=0$, $u=1$; cuando $x=4$, $u = 1 + \frac{9}{4} \cdot 4 = 1 + 9 = 10$.
+    $$
+    L = \int_{1}^{10} \sqrt{u} \cdot \frac{4}{9} du = \frac{4}{9} \int_{1}^{10} u^{1/2} du = \frac{4}{9} \cdot \frac{u^{3/2}}{3/2} \Big|_{1}^{10} 
+    $$
+    $$
+    = \frac{4}{9} \cdot \frac{2}{3} u^{3/2} \Big|_{1}^{10} = \frac{8}{27} (10^{3/2} - 1)
+    $$
+    $$
+    L = \frac{8}{27} (10\sqrt{10} - 1)
+    $$
+
+---
+
+**Ejemplo 2:** Calcular la longitud del arco de $f(x) = \ln(\cos x)$ en $[0, \pi/4]$.
+
+1.  $f'(x) = \frac{1}{\cos x} \cdot (-\sin x) = -\tan x$.
+2.  $[f'(x)]^2 = \tan^2 x$.
+3.  Aplicamos la fórmula:
+    $$
+    L = \int_{0}^{\pi/4} \sqrt{1 + \tan^2 x} \, dx = \int_{0}^{\pi/4} \sqrt{\sec^2 x} \, dx = \int_{0}^{\pi/4} \sec x \, dx
+    $$
+4.  $\int \sec x \, dx = \ln |\sec x + \tan x| + C$.
+    $$
+    L = \ln |\sec x + \tan x| \Big|_{0}^{\pi/4} = \ln (\sqrt{2} + 1) - \ln (1 + 0) = \ln (\sqrt{2} + 1)
+    $$
+
+---
+
+## Integrales Impropias (Tipo I)
+
+**Ejemplo 3:** Determinar si $\int_{1}^{\infty} \frac{1}{x^2} \, dx$ converge o diverge.
+
+$$
+\int_{1}^{\infty} \frac{1}{x^2} \, dx = \lim_{b \to \infty} \int_{1}^{b} x^{-2} \, dx = \lim_{b \to \infty} \left[ -\frac{1}{x} \right]_{1}^{b} = \lim_{b \to \infty} \left( -\frac{1}{b} + 1 \right) = 0 + 1 = 1
+$$
+La integral converge a 1.
+
+---
+
+**Ejemplo 4:** Determinar si $\int_{1}^{\infty} \frac{1}{x} \, dx$ converge o diverge.
+
+$$
+\int_{1}^{\infty} \frac{1}{x} \, dx = \lim_{b \to \infty} \int_{1}^{b} \frac{1}{x} \, dx = \lim_{b \to \infty} [\ln x]_{1}^{b} = \lim_{b \to \infty} (\ln b - 0) = \infty
+$$
+La integral diverge (tiende a infinito).
+
+---
+
+**Ejemplo 5:** Calcular $\int_{-\infty}^{0} e^{2x} \, dx$.
+
+$$
+\int_{-\infty}^{0} e^{2x} \, dx = \lim_{a \to -\infty} \int_{a}^{0} e^{2x} \, dx = \lim_{a \to -\infty} \left[ \frac{e^{2x}}{2} \right]_{a}^{0} = \lim_{a \to -\infty} \left( \frac{1}{2} - \frac{e^{2a}}{2} \right)
+$$
+Como $\lim_{a \to -\infty} e^{2a} = 0$, el límite es $\frac{1}{2}$. La integral converge a $\frac{1}{2}$.
+
+---
+
+## Integrales Impropias (Tipo II)
+
+**Ejemplo 6:** Calcular $\int_{0}^{1} \frac{1}{\sqrt{x}} \, dx$.
+
+La función tiene una discontinuidad infinita en $x=0$ (pues $\frac{1}{\sqrt{x}} \to \infty$).
+
+$$
+\int_{0}^{1} \frac{1}{\sqrt{x}} \, dx = \lim_{t \to 0^{+}} \int_{t}^{1} x^{-1/2} \, dx = \lim_{t \to 0^{+}} \left[ 2x^{1/2} \right]_{t}^{1} = \lim_{t \to 0^{+}} (2 - 2\sqrt{t}) = 2 - 0 = 2
+$$
+La integral converge a 2.
+
+---
+
+**Ejemplo 7:** Calcular $\int_{1}^{2} \frac{1}{(x-1)^2} \, dx$.
+
+La función tiene una discontinuidad infinita en $x=1$ (asíntota vertical).
+
+$$
+\int_{1}^{2} \frac{1}{(x-1)^2} \, dx = \lim_{t \to 1^{+}} \int_{t}^{2} (x-1)^{-2} \, dx = \lim_{t \to 1^{+}} \left[ -\frac{1}{x-1} \right]_{t}^{2}
+$$
+$$
+= \lim_{t \to 1^{+}} \left( -\frac{1}{1} + \frac{1}{t-1} \right) = \lim_{t \to 1^{+}} \left( -1 + \frac{1}{t-1} \right) = \infty
+$$
+La integral diverge (tiende a infinito).
+
+---
+
+**Ejemplo 8:** Calcular $\int_{0}^{2} \frac{1}{(x-1)^{2/3}} \, dx$.
+
+La función tiene una discontinuidad en $x=1$ (dentro del intervalo). Separamos:
+
+$$
+\int_{0}^{2} \frac{1}{(x-1)^{2/3}} \, dx = \int_{0}^{1} \frac{1}{(x-1)^{2/3}} \, dx + \int_{1}^{2} \frac{1}{(x-1)^{2/3}} \, dx
+$$
+
+Para la primera parte (límite por izquierda en $x=1$):
+$$
+\lim_{t \to 1^{-}} \int_{0}^{t} (x-1)^{-2/3} \, dx = \lim_{t \to 1^{-}} \left[ 3(x-1)^{1/3} \right]_{0}^{t} = \lim_{t \to 1^{-}} \left( 3(t-1)^{1/3} - 3(-1)^{1/3} \right)
+$$
+Como $(-1)^{1/3} = -1$, tenemos: $0 - 3(-1) = 3$. Converge a 3.
+
+Para la segunda parte (límite por derecha en $x=1$):
+$$
+\lim_{t \to 1^{+}} \int_{t}^{2} (x-1)^{-2/3} \, dx = \lim_{t \to 1^{+}} \left[ 3(x-1)^{1/3} \right]_{t}^{2} 
+$$
+$$
+= \lim_{t \to 1^{+}} \left( 3(1)^{1/3} - 3(t-1)^{1/3} \right) = 3 - 0 = 3
+$$
+
+La integral total converge a $3 + 3 = 6$.
+
+# Ejercicios Propuestos
+
+**Longitud de arco:**
+
+1.  Calcula la longitud de $f(x) = 2x + 1$ en $[0, 3]$. (Debe dar $3\sqrt{5}$)
+2.  Calcula la longitud de $f(x) = \frac{x^3}{6} + \frac{1}{2x}$ en $[1, 2]$.
+3.  Calcula la longitud de $f(x) = \frac{1}{3}x^{3/2} - x^{1/2}$ en $[0, 4]$.
+
+**Integrales impropias (Tipo I):**
+
+4.  $\int_{1}^{\infty} \frac{1}{x^3} \, dx$
+5.  $\int_{0}^{\infty} e^{-2x} \, dx$
+6.  $\int_{-\infty}^{0} e^{x} \, dx$
+7.  $\int_{-\infty}^{\infty} \frac{1}{1+x^2} \, dx$ (Pista: $\int \frac{1}{1+x^2} dx = \arctan x$)
+
+**Integrales impropias (Tipo II):**
+
+8.  $\int_{0}^{1} \frac{1}{\sqrt{1-x}} \, dx$
+9.  $\int_{0}^{2} \frac{1}{x-1} \, dx$ (Discontinuidad en $x=1$)
+10. $\int_{0}^{1} \ln x \, dx$ (Pista: $\int \ln x \, dx = x \ln x - x$)
+
+# Conclusión
+
+Hemos estudiado la longitud de arco como una aplicación de la integral definida, y las integrales impropias que extienden el concepto a intervalos no acotados o funciones con singularidades. Ambos temas son fundamentales para problemas más avanzados en cálculo.

@@ -122,8 +122,8 @@ Calcula los siguientes límites usando L'Hôpital:
 
 Analiza y grafica las siguientes funciones (dominio, cortes, crecimiento, puntos críticos, concavidad, puntos de inflexión):
 
-5.  $f(x) = 2x^3 - 3x^2 - 12x + 5$
-6.  $f(x) = x^4 - 4x^3 + 10$
+5.  $f(x) = x^3 - 6x^2 + 11x - 6$
+6.  $f(x) = x^4 - 10x^3 + 35x^2 - 50x + 24$
 7.  $f(x) = \frac{x}{x^2 + 1}$ (Busca asíntotas)
 8.  $f(x) = \ln(x^2 + 1)$
 

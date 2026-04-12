@@ -1,0 +1,235 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 12: Técnicas de Integración"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+No todas las integrales pueden resolverse con las reglas básicas. En esta semana estudiaremos las principales **técnicas de integración**: sustitución (cambio de variable), integración por partes, integración trigonométrica y fracciones parciales. Estas herramientas nos permitirán abordar una amplia variedad de integrales.
+
+---
+
+# Técnicas de Integración
+
+## Sustitución (Cambio de Variable)
+
+Se utiliza cuando el integrando contiene una función y su derivada (o casi su derivada). Se define $u = g(x)$, entonces $du = g'(x) \, dx$.
+
+$$
+\int f(g(x)) \cdot g'(x) \, dx = \int f(u) \, du
+$$
+
+## Integración por Partes
+
+Se basa en la derivada del producto: $d(uv) = u \, dv + v \, du$. Integrando:
+
+$$
+\int u \, dv = uv - \int v \, du
+$$
+
+## Integración Trigonométrica
+
+Se usan identidades trigonométricas para simplificar integrales de potencias de funciones trigonométricas.
+
+**Identidades útiles:**
+- $\sin^2 x + \cos^2 x = 1$
+- $\sin^2 x = \frac{1 - \cos 2x}{2}$
+- $\cos^2 x = \frac{1 + \cos 2x}{2}$
+- $\sin 2x = 2 \sin x \cos x$
+
+## Fracciones Parciales (4 casos)
+
+Se descompone una función racional $\frac{P(x)}{Q(x)}$ en suma de fracciones más simples.
+
+- **Caso 1:** Factores lineales distintos: $\frac{A}{ax+b} + \frac{B}{cx+d}$
+- **Caso 2:** Factores lineales repetidos: $\frac{A}{ax+b} + \frac{B}{(ax+b)^2} + \cdots$
+- **Caso 3:** Factores cuadráticos irreducibles distintos: $\frac{Ax+B}{ax^2+bx+c}$
+- **Caso 4:** Factores cuadráticos irreducibles repetidos
+
+---
+
+# Laboratorio
+
+## Sustitución (Cambio de Variable)
+
+**Ejemplo 1:** Calcular $\int 2x \cdot e^{x^2} \, dx$.
+
+1.  Elegimos $u = x^2$, entonces $du = 2x \, dx$.
+2.  Sustituimos:
+    $$
+    \int 2x \cdot e^{x^2} \, dx = \int e^u \, du = e^u + C = e^{x^2} + C
+    $$
+
+---
+
+**Ejemplo 2:** Calcular $\int \frac{3x^2}{x^3 + 1} \, dx$.
+
+1.  Elegimos $u = x^3 + 1$, entonces $du = 3x^2 \, dx$.
+2.  Sustituimos:
+    $$
+    \int \frac{3x^2}{x^3 + 1} \, dx = \int \frac{1}{u} \, du = \ln |u| + C = \ln |x^3 + 1| + C
+    $$
+
+---
+
+**Ejemplo 3:** Calcular $\int_{0}^{2} x \sqrt{x^2 + 1} \, dx$ (integral definida con sustitución).
+
+1.  Elegimos $u = x^2 + 1$, entonces $du = 2x \, dx \implies x \, dx = \frac{du}{2}$.
+2.  Cambiamos los límites: cuando $x=0$, $u=1$; cuando $x=2$, $u=5$.
+3.  Sustituimos:
+    $$
+    \int_{0}^{2} x \sqrt{x^2 + 1} \, dx = \int_{1}^{5} \sqrt{u} \cdot \frac{du}{2} = \frac{1}{2} \int_{1}^{5} u^{1/2} \, du
+    $$
+    $$
+    = \frac{1}{2} \cdot \frac{u^{3/2}}{3/2} \Big|_{1}^{5} = \frac{1}{2} \cdot \frac{2}{3} u^{3/2} \Big|_{1}^{5} = \frac{1}{3} (5^{3/2} - 1^{3/2}) = \frac{1}{3} (5\sqrt{5} - 1)
+    $$
+
+---
+
+## Integración por Partes
+
+**Ejemplo 4:** Calcular $\int x e^x \, dx$.
+
+1.  Elegimos $u = x$, $dv = e^x \, dx$.
+2.  Entonces $du = dx$, $v = e^x$.
+3.  Aplicamos la fórmula:
+    $$
+    \int x e^x \, dx = x e^x - \int e^x \, dx = x e^x - e^x + C = e^x (x - 1) + C
+    $$
+
+---
+
+**Ejemplo 5:** Calcular $\int \ln x \, dx$.
+
+1.  Elegimos $u = \ln x$, $dv = dx$.
+2.  Entonces $du = \frac{1}{x} dx$, $v = x$.
+3.  Aplicamos la fórmula:
+    $$
+    \int \ln x \, dx = x \ln x - \int x \cdot \frac{1}{x} \, dx = x \ln x - \int 1 \, dx = x \ln x - x + C
+    $$
+
+---
+
+**Ejemplo 6:** Calcular $\int x^2 \ln x \, dx$.
+
+1.  Elegimos $u = \ln x$, $dv = x^2 \, dx$.
+2.  Entonces $du = \frac{1}{x} dx$, $v = \frac{x^3}{3}$.
+3.  Aplicamos:
+    $$
+    \int x^2 \ln x \, dx = \frac{x^3}{3} \ln x - \int \frac{x^3}{3} \cdot \frac{1}{x} \, dx = \frac{x^3}{3} \ln x - \frac{1}{3} \int x^2 \, dx
+    $$
+    $$
+    = \frac{x^3}{3} \ln x - \frac{1}{3} \cdot \frac{x^3}{3} + C = \frac{x^3}{3} \ln x - \frac{x^3}{9} + C
+    $$
+
+---
+
+## Integración Trigonométrica
+
+**Ejemplo 7:** Calcular $\int \sin^2 x \, dx$.
+
+Usamos la identidad $\sin^2 x = \frac{1 - \cos 2x}{2}$:
+$$
+\int \sin^2 x \, dx = \int \frac{1 - \cos 2x}{2} \, dx = \frac{1}{2} \int (1 - \cos 2x) \, dx
+$$
+$$
+= \frac{1}{2} \left( x - \frac{\sin 2x}{2} \right) + C = \frac{x}{2} - \frac{\sin 2x}{4} + C
+$$
+
+---
+
+**Ejemplo 8:** Calcular $\int \cos^3 x \, dx$.
+
+Escribimos $\cos^3 x = \cos^2 x \cdot \cos x = (1 - \sin^2 x) \cos x$.
+$$
+\int \cos^3 x \, dx = \int (1 - \sin^2 x) \cos x \, dx
+$$
+Hacemos $u = \sin x$, $du = \cos x \, dx$:
+$$
+\int (1 - u^2) \, du = u - \frac{u^3}{3} + C = \sin x - \frac{\sin^3 x}{3} + C
+$$
+
+---
+
+## Fracciones Parciales
+
+**Ejemplo 9 (Caso 1 - Factores lineales distintos):** Calcular $\int \frac{5x - 2}{x^2 - x - 2} \, dx$.
+
+1.  Factorizamos el denominador: $x^2 - x - 2 = (x-2)(x+1)$.
+2.  Descomponemos: $\frac{5x-2}{(x-2)(x+1)} = \frac{A}{x-2} + \frac{B}{x+1}$.
+3.  Multiplicamos por $(x-2)(x+1)$:
+    $5x - 2 = A(x+1) + B(x-2) = (A+B)x + (A - 2B)$.
+4.  Igualamos coeficientes:
+    $\begin{cases} A + B = 5 \\ A - 2B = -2 \end{cases}$
+    Resolviendo: Restamos la segunda de la primera: $(A+B) - (A-2B) = 5 - (-2) \implies 3B = 7 \implies B = \frac{7}{3}$. Luego $A = 5 - B = \frac{15}{3} - \frac{7}{3} = \frac{8}{3}$.
+5.  Integramos:
+    $$
+    \int \frac{5x-2}{x^2 - x - 2} \, dx = \int \left( \frac{8/3}{x-2} + \frac{7/3}{x+1} \right) dx = \frac{8}{3} \ln |x-2| + \frac{7}{3} \ln |x+1| + C
+    $$
+
+---
+
+**Ejemplo 10 (Caso 2 - Factores lineales repetidos):** Calcular $\int \frac{x+1}{(x-1)^2} \, dx$.
+
+1.  Descomponemos: $\frac{x+1}{(x-1)^2} = \frac{A}{x-1} + \frac{B}{(x-1)^2}$.
+2.  Multiplicamos por $(x-1)^2$:
+    $x + 1 = A(x-1) + B = Ax + (-A + B)$.
+3.  Igualamos coeficientes:
+    $\begin{cases} A = 1 \\ -A + B = 1 \implies -1 + B = 1 \implies B = 2 \end{cases}$
+4.  Integramos:
+    $$
+    \int \frac{x+1}{(x-1)^2} \, dx = \int \left( \frac{1}{x-1} + \frac{2}{(x-1)^2} \right) dx = \ln |x-1| - \frac{2}{x-1} + C
+    $$
+
+# Ejercicios Propuestos
+
+Resuelve las siguientes integrales usando la técnica indicada:
+
+**Sustitución:**
+
+- 1.  $\int 3x^2 (x^3 + 2)^4 \, dx$
+- 2.  $\int \frac{2x}{x^2 + 1} \, dx$
+- 3.  $\int_{0}^{\pi} \sin x \cos^2 x \, dx$
+
+**Integración por partes:**
+
+- 4.  $\int x e^{-x} \, dx$
+- 5.  $\int x \sin x \, dx$
+- 6.  $\int \ln(x^2) \, dx$
+
+**Trigonométricas:**
+
+- 7.  $\int \cos^2 x \, dx$
+- 8.  $\int \sin^3 x \, dx$
+
+**Fracciones parciales:**
+
+- 9.  $\int \frac{3x + 5}{x^2 - 4x + 3} \, dx$ (Caso 1)
+- 10. $\int \frac{x^2 + 2x - 1}{(x-1)^2 (x+2)} \, dx$ (Caso 3)
+
+# Conclusión
+
+Hemos estudiado las principales técnicas de integración. La práctica es fundamental para reconocer qué técnica aplicar en cada situación. En la próxima semana aplicaremos estas técnicas para calcular volúmenes de sólidos de revolución.

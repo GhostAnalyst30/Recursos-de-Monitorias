@@ -1,0 +1,246 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 16: Series de Potencia, Taylor y Maclaurin"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta semana culminamos el curso con el estudio de las **series de potencia** y su aplicación más importante: las **series de Taylor y Maclaurin**. Estas series nos permiten representar funciones (como $e^x$, $\sin x$, $\cos x$, etc.) como sumas infinitas de polinomios, lo cual es fundamental para aproximaciones numéricas y análisis avanzado.
+
+---
+
+# Series de Potencia
+
+Una **serie de potencia** centrada en $c$ tiene la forma:
+
+$$
+\sum_{n=0}^{\infty} a_n (x - c)^n = a_0 + a_1 (x-c) + a_2 (x-c)^2 + \cdots
+$$
+
+## Radio y Campo (Intervalo) de Convergencia
+
+Para cada serie de potencia, existe un **radio de convergencia** $R \geq 0$ tal que:
+
+- La serie converge absolutamente para $|x - c| < R$.
+- La serie diverge para $|x - c| > R$.
+
+El **campo (intervalo) de convergencia** es el conjunto de valores de $x$ donde la serie converge. Para determinarlo, se analizan los extremos $x = c \pm R$ por separado.
+
+---
+
+# Series de Taylor y Maclaurin
+
+Si una función $f$ tiene derivadas de todos los órdenes en $x = c$, su **serie de Taylor** es:
+
+$$
+\sum_{n=0}^{\infty} \frac{f^{(n)}(c)}{n!} (x - c)^n = f(c) + f'(c)(x-c) + \frac{f''(c)}{2!}(x-c)^2 + \frac{f'''(c)}{3!}(x-c)^3 + \cdots
+$$
+
+Cuando $c = 0$, la serie se llama **serie de Maclaurin**:
+
+$$
+\sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots
+$$
+
+---
+
+# Series de Maclaurin Comunes
+
+1.  $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$ (Converge para todo $x$)
+2.  $\sin x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots$ (Converge para todo $x$)
+3.  $\cos x = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots$ (Converge para todo $x$)
+4.  $\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n = 1 + x + x^2 + x^3 + \cdots$ (Converge para $|x| < 1$)
+5.  $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots$ (Converge para $-1 < x \leq 1$)
+
+---
+
+# Laboratorio
+
+## Radio e Intervalo de Convergencia
+
+**Ejemplo 1:** Encontrar el radio y el intervalo de convergencia de $\sum_{n=1}^{\infty} \frac{x^n}{n}$.
+
+1.  Usamos el criterio de la razón:
+    $$
+    \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{x^{n+1}}{n+1} \cdot \frac{n}{x^n} \right| = \lim_{n \to \infty} |x| \cdot \frac{n}{n+1} = |x|
+    $$
+2.  Converge si $|x| < 1$, diverge si $|x| > 1$. Por lo tanto, $R = 1$.
+3.  Analizamos los extremos:
+    - Para $x = 1$: $\sum_{n=1}^{\infty} \frac{1}{n}$ (serie armónica) **diverge**.
+    - Para $x = -1$: $\sum_{n=1}^{\infty} \frac{(-1)^n}{n}$ (serie alternante armónica) **converge**.
+4.  **Intervalo de convergencia:** $[-1, 1)$.
+
+---
+
+**Ejemplo 2:** Encontrar el radio y el intervalo de convergencia de $\sum_{n=1}^{\infty} \frac{x^n}{n^2}$.
+
+1.  Criterio de la razón:
+    $$
+    \lim_{n \to \infty} \left| \frac{x^{n+1}}{(n+1)^2} \cdot \frac{n^2}{x^n} \right| = \lim_{n \to \infty} |x| \cdot \frac{n^2}{(n+1)^2} = |x|
+    $$
+    $R = 1$.
+2.  Analizamos extremos:
+    - Para $x = 1$: $\sum_{n=1}^{\infty} \frac{1}{n^2}$ (serie $p$ con $p=2$) **converge**.
+    - Para $x = -1$: $\sum_{n=1}^{\infty} \frac{(-1)^n}{n^2}$ **converge** (converge absolutamente).
+3.  **Intervalo de convergencia:** $[-1, 1]$.
+
+---
+
+**Ejemplo 3:** Encontrar el radio de convergencia de $\sum_{n=0}^{\infty} \frac{x^n}{n!}$.
+
+$$
+\lim_{n \to \infty} \left| \frac{x^{n+1}}{(n+1)!} \cdot \frac{n!}{x^n} \right| = \lim_{n \to \infty} \frac{|x|}{n+1} = 0
+$$
+Como el límite es 0 para todo $x$, el radio $R = \infty$. La serie converge para todo $x$.
+
+---
+
+## Polinomios de Maclaurin
+
+**Ejemplo 4:** Encontrar el polinomio de Maclaurin de grado 4 para $f(x) = e^x$.
+
+Calculamos las derivadas en $x=0$:
+- $f(0) = 1$
+- $f'(0) = 1$
+- $f''(0) = 1$
+- $f'''(0) = 1$
+- $f^{(4)}(0) = 1$
+
+El polinomio de Maclaurin de grado 4 es:
+$$
+P_4(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \frac{f^{(4)}(0)}{4!}x^4 = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24}
+$$
+
+---
+
+**Ejemplo 5:** Encontrar el polinomio de Maclaurin de grado 5 para $f(x) = \sin x$.
+
+Derivadas en $x=0$:
+- $f(0) = 0$
+- $f'(0) = \cos 0 = 1$
+- $f''(0) = -\sin 0 = 0$
+- $f'''(0) = -\cos 0 = -1$
+- $f^{(4)}(0) = \sin 0 = 0$
+- $f^{(5)}(0) = \cos 0 = 1$
+
+Polinomio de grado 5:
+$$
+P_5(x) = 0 + 1 \cdot x + 0 \cdot x^2 + \frac{-1}{3!}x^3 + 0 \cdot x^4 + \frac{1}{5!}x^5 = x - \frac{x^3}{6} + \frac{x^5}{120}
+$$
+
+---
+
+**Ejemplo 6:** Encontrar el polinomio de Maclaurin de grado 4 para $f(x) = \cos x$.
+
+Derivadas en $x=0$:
+- $f(0) = 1$
+- $f'(0) = 0$
+- $f''(0) = -1$
+- $f'''(0) = 0$
+- $f^{(4)}(0) = 1$
+
+Polinomio de grado 4:
+$$
+P_4(x) = 1 + 0 \cdot x + \frac{-1}{2!}x^2 + 0 \cdot x^3 + \frac{1}{4!}x^4 = 1 - \frac{x^2}{2} + \frac{x^4}{24}
+$$
+
+---
+
+**Ejemplo 7:** Encontrar el polinomio de Maclaurin de grado 3 para $f(x) = \ln(1+x)$.
+
+Derivadas en $x=0$:
+- $f(0) = \ln 1 = 0$
+- $f'(0) = \frac{1}{1+0} = 1$
+- $f''(0) = -\frac{1}{(1+x)^2}\Big|_{x=0} = -1$
+- $f'''(0) = \frac{2}{(1+x)^3}\Big|_{x=0} = 2$
+
+Polinomio de grado 3:
+$$
+P_3(x) = 0 + 1 \cdot x + \frac{-1}{2!}x^2 + \frac{2}{3!}x^3 = x - \frac{x^2}{2} + \frac{x^3}{3}
+$$
+
+---
+
+**Ejemplo 8:** Usar el polinomio de Maclaurin de $e^x$ para aproximar $e^{0.5}$.
+
+Usamos $P_4(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24}$ con $x = 0.5$:
+$$
+P_4(0.5) = 1 + 0.5 + \frac{0.25}{2} + \frac{0.125}{6} + \frac{0.0625}{24}
+$$
+$$
+= 1 + 0.5 + 0.125 + 0.0208333 + 0.00260417 = 1.6484375
+$$
+El valor real de $e^{0.5} \approx 1.64872127$. El error es aproximadamente $0.0002838$.
+
+---
+
+**Ejemplo 9:** Construir la serie de Maclaurin para $f(x) = e^{-x^2}$.
+
+Sabemos que $e^u = \sum_{n=0}^{\infty} \frac{u^n}{n!}$. Hacemos $u = -x^2$:
+$$
+e^{-x^2} = \sum_{n=0}^{\infty} \frac{(-x^2)^n}{n!} = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{n!} = 1 - x^2 + \frac{x^4}{2!} - \frac{x^6}{3!} + \cdots
+$$
+
+---
+
+**Ejemplo 10:** Encontrar la serie de Maclaurin para $f(x) = \sin(2x)$.
+
+Sabemos que $\sin u = \sum_{n=0}^{\infty} (-1)^n \frac{u^{2n+1}}{(2n+1)!}$. Hacemos $u = 2x$:
+$$
+\sin(2x) = \sum_{n=0}^{\infty} (-1)^n \frac{(2x)^{2n+1}}{(2n+1)!} = \sum_{n=0}^{\infty} (-1)^n \frac{2^{2n+1} x^{2n+1}}{(2n+1)!}
+$$
+Los primeros términos:
+$$
+\sin(2x) = 2x - \frac{8x^3}{3!} + \frac{32x^5}{5!} - \cdots = 2x - \frac{4}{3}x^3 + \frac{4}{15}x^5 - \cdots
+$$
+
+# Ejercicios Propuestos
+
+**Radio e intervalo de convergencia:**
+
+1.  $\sum_{n=0}^{\infty} \frac{x^n}{3^n}$ (Geométrica)
+2.  $\sum_{n=1}^{\infty} \frac{(x-2)^n}{n \cdot 3^n}$
+3.  $\sum_{n=0}^{\infty} n! x^n$ (¿Cuál es el radio?)
+4.  $\sum_{n=1}^{\infty} \frac{(2x)^n}{n^2}$
+
+**Polinomios de Maclaurin:**
+
+5.  Encuentra el polinomio de Maclaurin de grado 3 para $f(x) = e^{2x}$.
+6.  Encuentra el polinomio de Maclaurin de grado 4 para $f(x) = \cos(3x)$.
+7.  Encuentra el polinomio de Maclaurin de grado 2 para $f(x) = \sqrt{1+x}$.
+
+**Series de Taylor (centradas en $c \neq 0$):**
+
+8.  Encuentra la serie de Taylor de $f(x) = \frac{1}{x}$ centrada en $c=1$. (Pista: $\frac{1}{x} = \frac{1}{1+(x-1)}$, usa serie geométrica)
+9.  Encuentra el polinomio de Taylor de grado 2 para $f(x) = \ln x$ centrado en $c=1$.
+
+**Aproximaciones:**
+
+10. Usa el polinomio de Maclaurin de grado 4 para $\cos x$ y estima $\cos(0.2)$. Compara con el valor real.
+
+# Conclusión
+
+Hemos llegado al final del curso. Las series de potencia, Taylor y Maclaurin representan la culminación del cálculo univariable, conectando los conceptos de derivadas, integrales y convergencia. Estas herramientas son esenciales en áreas como la física, la ingeniería, la economía y la ciencia de datos, donde se utilizan para modelar fenómenos complejos y realizar aproximaciones numéricas.

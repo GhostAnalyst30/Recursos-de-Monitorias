@@ -1,0 +1,183 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 13: Volumen de Sólidos de Revolución"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+Una de las aplicaciones más importantes de la integral definida es el cálculo de **volúmenes de sólidos de revolución**. Estos sólidos se generan al girar una región plana alrededor de un eje (eje x, eje y, o una recta paralela). Estudiaremos tres métodos: **discos**, **arandelas** y **cascarones (casquetes cilíndricos)**.
+
+---
+
+# Métodos para Calcular Volúmenes
+
+## Método de los Discos
+
+Se usa cuando la región gira alrededor de un eje y la sección transversal es un disco (sin "hueco").
+
+**Eje horizontal (alrededor del eje x):**
+$$
+V = \pi \int_{a}^{b} [R(x)]^2 \, dx
+$$
+
+**Eje vertical (alrededor del eje y):**
+$$
+V = \pi \int_{c}^{d} [R(y)]^2 \, dy
+$$
+
+## Método de las Arandelas
+
+Se usa cuando la región tiene un "hueco" (sección transversal con forma de arandela). Hay un radio exterior $R$ y un radio interior $r$.
+
+**Eje horizontal:**
+$$
+V = \pi \int_{a}^{b} \left( [R(x)]^2 - [r(x)]^2 \right) dx
+$$
+
+**Eje vertical:**
+$$
+V = \pi \int_{c}^{d} \left( [R(y)]^2 - [r(y)]^2 \right) dy
+$$
+
+## Método de los Cascarones (Casquetes Cilíndricos)
+
+Se usa cuando es más conveniente integrar con respecto al eje perpendicular al eje de rotación. Se consideran cáscaras cilíndricas de radio $r$, altura $h$ y espesor $dr$.
+
+**Alrededor del eje y (usando $x$):**
+$$
+V = 2\pi \int_{a}^{b} [\text{radio}] \cdot [\text{altura}] \, dx = 2\pi \int_{a}^{b} x \cdot f(x) \, dx
+$$
+
+**Alrededor del eje x (usando $y$):**
+$$
+V = 2\pi \int_{c}^{d} y \cdot f(y) \, dy
+$$
+
+---
+
+# Laboratorio
+
+## Método de los Discos
+
+**Ejemplo 1:** Calcular el volumen del sólido generado al girar la región bajo $f(x) = \sqrt{x}$ en $[0, 4]$ alrededor del eje x.
+
+1.  La función es $R(x) = \sqrt{x}$, con $x \in [0, 4]$.
+2.  Aplicamos la fórmula del disco:
+    $$
+    V = \pi \int_{0}^{4} (\sqrt{x})^2 \, dx = \pi \int_{0}^{4} x \, dx = \pi \left[ \frac{x^2}{2} \right]_{0}^{4} = \pi \left( \frac{16}{2} - 0 \right) = 8\pi
+    $$
+
+---
+
+**Ejemplo 2:** Calcular el volumen generado al girar la región bajo $f(x) = x^2$ en $[0, 2]$ alrededor del eje y.
+
+1.  Como giramos alrededor del eje y, usamos $y$ como variable. Despejamos $x$: $y = x^2 \implies x = \sqrt{y}$.
+2.  Cuando $x=0$, $y=0$; cuando $x=2$, $y=4$.
+3.  El radio es $R(y) = \sqrt{y}$.
+    $$
+    V = \pi \int_{0}^{4} (\sqrt{y})^2 \, dy = \pi \int_{0}^{4} y \, dy = \pi \left[ \frac{y^2}{2} \right]_{0}^{4} = \pi \left( \frac{16}{2} \right) = 8\pi
+    $$
+
+---
+
+## Método de las Arandelas
+
+**Ejemplo 3:** Calcular el volumen generado al girar la región entre $f(x) = x^2$ y $g(x) = \sqrt{x}$ alrededor del eje x.
+
+1.  Encontramos los puntos de intersección: $x^2 = \sqrt{x} \implies x^4 = x \implies x(x^3 - 1)=0$, entonces $x=0$ y $x=1$.
+2.  En $[0,1]$, $\sqrt{x} \geq x^2$. Por lo tanto:
+    - Radio exterior: $R(x) = \sqrt{x}$
+    - Radio interior: $r(x) = x^2$
+3.  Aplicamos la fórmula de la arandela:
+    $$
+    V = \pi \int_{0}^{1} \left( (\sqrt{x})^2 - (x^2)^2 \right) dx = \pi \int_{0}^{1} (x - x^4) \, dx
+    $$
+    $$
+    = \pi \left[ \frac{x^2}{2} - \frac{x^5}{5} \right]_{0}^{1} = \pi \left( \frac{1}{2} - \frac{1}{5} \right) = \pi \left( \frac{5-2}{10} \right) = \frac{3\pi}{10}
+    $$
+
+---
+
+**Ejemplo 4:** La misma región del ejemplo 3, pero ahora alrededor del eje y.
+
+1.  Usamos $y$ como variable. Despejamos:
+    - De $y = x^2 \implies x = \sqrt{y}$ (rama derecha)
+    - De $y = \sqrt{x} \implies x = y^2$
+2.  Los puntos de intersección en $y$: $y=0$ y $y=1$.
+3.  En $[0,1]$, $\sqrt{y} \geq y^2$. Por lo tanto:
+    - Radio exterior: $R(y) = \sqrt{y}$
+    - Radio interior: $r(y) = y^2$
+4.  Aplicamos la fórmula:
+    $$
+    V = \pi \int_{0}^{1} \left( (\sqrt{y})^2 - (y^2)^2 \right) dy = \pi \int_{0}^{1} (y - y^4) \, dy = \pi \left[ \frac{y^2}{2} - \frac{y^5}{5} \right]_{0}^{1} = \frac{3\pi}{10}
+    $$
+
+---
+
+## Método de los Cascarones (Casquetes)
+
+**Ejemplo 5:** Usar el método de cascarones para calcular el volumen generado al girar la región bajo $f(x) = x^2$ en $[0, 2]$ alrededor del eje y.
+
+1.  Radio = $x$, altura = $f(x) = x^2$, espesor = $dx$.
+2.  Aplicamos la fórmula:
+    $$
+    V = 2\pi \int_{0}^{2} x \cdot x^2 \, dx = 2\pi \int_{0}^{2} x^3 \, dx = 2\pi \left[ \frac{x^4}{4} \right]_{0}^{2} = 2\pi \left( \frac{16}{4} \right) = 2\pi (4) = 8\pi
+    $$
+    (Verificamos que coincide con el resultado del disco del Ejemplo 2).
+
+---
+
+**Ejemplo 6:** Usar cascarones para girar la región entre $f(x) = x^2$ y $g(x) = \sqrt{x}$ alrededor del eje y.
+
+1.  Radio = $x$, altura = $f_{\text{superior}} - f_{\text{inferior}} = \sqrt{x} - x^2$.
+2.  Los límites son $x=0$ a $x=1$.
+    $$
+    V = 2\pi \int_{0}^{1} x (\sqrt{x} - x^2) \, dx = 2\pi \int_{0}^{1} (x^{3/2} - x^3) \, dx
+    $$
+    $$
+    = 2\pi \left[ \frac{x^{5/2}}{5/2} - \frac{x^4}{4} \right]_{0}^{1} = 2\pi \left( \frac{2}{5}x^{5/2} - \frac{x^4}{4} \right)_{0}^{1} = 2\pi \left( \frac{2}{5} - \frac{1}{4} \right)
+    $$
+    $$
+    = 2\pi \left( \frac{8-5}{20} \right) = 2\pi \left( \frac{3}{20} \right) = \frac{3\pi}{10}
+    $$
+    (Verificamos que coincide con el resultado de arandelas).
+
+# Ejercicios Propuestos
+
+Para cada ejercicio, dibuja la región, el sólido y selecciona el método más adecuado.
+
+1.  Calcula el volumen generado al girar $f(x) = 4 - x^2$ en $[-2, 2]$ alrededor del eje x. (Discos)
+2.  Calcula el volumen generado al girar $f(x) = \sqrt{x}$ en $[0, 4]$ alrededor del eje y. (Cascarones)
+3.  Calcula el volumen generado al girar la región entre $f(x) = x^2$ y $g(x) = 2x$ alrededor del eje x. (Arandelas)
+4.  Calcula el volumen generado al girar la región entre $f(x) = x^2 + 1$ y $g(x) = 2x + 1$ alrededor del eje y. (Cascarones)
+5.  Calcula el volumen generado al girar $f(x) = \sin x$ en $[0, \pi]$ alrededor del eje x. (Discos)
+6.  Calcula el volumen generado al girar la región bajo $f(x) = e^{-x}$ en $[0, \ln 2]$ alrededor del eje x. (Discos)
+7.  Calcula el volumen generado al girar la región entre $f(x) = 2x^2$ y $g(x) = x^3$ alrededor del eje y. (Elige el método)
+8.  Calcula el volumen generado al girar $f(x) = 9 - x^2$ en $[-3, 3]$ alrededor del eje y. (Cascarones)
+
+# Conclusión
+
+Hemos aprendido tres métodos para calcular volúmenes de sólidos de revolución. La elección del método adecuado depende de la forma de la región y del eje de rotación. La práctica ayuda a identificar cuál método simplifica los cálculos.

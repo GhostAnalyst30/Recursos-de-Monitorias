@@ -1,0 +1,215 @@
+---
+title: "Cálculo Univariable"
+subtitle: "Clase 15: Sucesiones y Series Infinitas"
+author: 
+  - name: "Emmanuel Ascendra"
+    affiliation: "Ingeniería Mecatrónica"
+    email: "eascendra@utb.edu.co"
+
+lang: es
+
+format:
+    html:
+        theme: 
+            light: flatly
+            dark: darkly
+        toc: true
+        toc-depth: 3
+        toc-title: "Contenido de la Clase"
+        number-sections: true
+        code-copy: true
+        page-layout: full
+        margin-top: 2cm
+        margin-bottom: 2cm
+        margin-left: 1.5cm
+        margin-right: 1.5cm        
+        include-after-body: footer.html
+---
+
+# Introducción
+
+En esta semana comenzamos el estudio de las **sucesiones** y **series infinitas**. Las sucesiones son listas ordenadas de números, mientras que las series son sumas infinitas de términos de una sucesión. Estudiaremos cuándo una serie converge (tiene una suma finita) o diverge (su suma es infinita o no existe), y presentaremos los criterios de convergencia más importantes.
+
+---
+
+# Sucesiones
+
+Una **sucesión** es una función cuyo dominio son los números naturales. Se denota como $\{a_n\}_{n=1}^{\infty}$ o simplemente $\{a_n\}$.
+
+## Límite de una Sucesión
+
+Decimos que $\lim_{n \to \infty} a_n = L$ si los términos de la sucesión se acercan arbitrariamente a $L$ cuando $n$ crece.
+
+- Si el límite existe (es finito), la sucesión **converge**.
+- Si el límite es infinito o no existe, la sucesión **diverge**.
+
+---
+
+# Series Infinitas
+
+Una **serie infinita** es la suma de los términos de una sucesión:
+
+$$
+\sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \cdots
+$$
+
+## Convergencia de una Serie
+
+Definimos la **sucesión de sumas parciales** $S_N = a_1 + a_2 + \cdots + a_N$.
+
+La serie $\sum_{n=1}^{\infty} a_n$ **converge** si $\lim_{N \to \infty} S_N$ existe (es finito). En ese caso, la suma de la serie es ese límite.
+
+Si el límite no existe o es infinito, la serie **diverge**.
+
+---
+
+# Criterios de Convergencia
+
+## Criterio del Término $n$-ésimo (Prueba de divergencia)
+
+Si $\lim_{n \to \infty} a_n \neq 0$, entonces $\sum a_n$ **diverge**.
+
+**Importante:** Si el límite es 0, la serie **puede** converger o diverger; se necesitan otros criterios.
+
+## Serie Geométrica
+
+$$
+\sum_{n=0}^{\infty} ar^n = a + ar + ar^2 + \cdots
+$$
+
+- **Converge** si $|r| < 1$, y su suma es $\frac{a}{1-r}$.
+- **Diverge** si $|r| \geq 1$.
+
+## Serie $p$ (o serie armónica generalizada)
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^p}
+$$
+
+- **Converge** si $p > 1$.
+- **Diverge** si $p \leq 1$.
+
+## Criterio de la Razón (de D'Alembert)
+
+Sea $\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = L$.
+
+- Si $L < 1$, la serie **converge**.
+- Si $L > 1$ (o $L = \infty$), la serie **diverge**.
+- Si $L = 1$, el criterio es **inconcluso**.
+
+---
+
+# Laboratorio
+
+## Sucesiones
+
+**Ejemplo 1:** Determinar si la sucesión $a_n = \frac{2n+1}{n}$ converge.
+
+$$
+\lim_{n \to \infty} \frac{2n+1}{n} = \lim_{n \to \infty} \left(2 + \frac{1}{n}\right) = 2
+$$
+Converge a 2.
+
+---
+
+**Ejemplo 2:** Determinar si la sucesión $a_n = (-1)^n$ converge.
+
+Los términos son: $-1, 1, -1, 1, \ldots$ El límite no existe. La sucesión diverge.
+
+---
+
+## Series - Criterio del Término $n$-ésimo
+
+**Ejemplo 3:** Analizar $\sum_{n=1}^{\infty} \frac{2n}{n+1}$.
+
+$\lim_{n \to \infty} \frac{2n}{n+1} = 2 \neq 0$. Por lo tanto, la serie **diverge**.
+
+---
+
+**Ejemplo 4:** Analizar $\sum_{n=1}^{\infty} \frac{1}{n}$ (serie armónica).
+
+$\lim_{n \to \infty} \frac{1}{n} = 0$, pero la serie diverge (es una serie $p$ con $p=1$). Esto muestra que el límite 0 no es suficiente para garantizar convergencia.
+
+---
+
+## Serie Geométrica
+
+**Ejemplo 5:** Analizar $\sum_{n=0}^{\infty} \left(\frac{1}{2}\right)^n$.
+
+Es una serie geométrica con $a=1$, $r=\frac{1}{2}$. Como $|r| = 0.5 < 1$, converge.
+
+Suma: $\frac{a}{1-r} = \frac{1}{1 - 1/2} = \frac{1}{1/2} = 2$.
+
+---
+
+**Ejemplo 6:** Analizar $\sum_{n=1}^{\infty} 3 \cdot 2^{n}$.
+
+Reescribimos: $\sum_{n=1}^{\infty} 3 \cdot 2^{n} = 3 \sum_{n=1}^{\infty} 2^{n}$. Es geométrica con $a=3 \cdot 2 = 6$, $r=2$. Como $|r| = 2 > 1$, diverge.
+
+---
+
+## Serie $p$
+
+**Ejemplo 7:** Analizar $\sum_{n=1}^{\infty} \frac{1}{n^{3/2}}$.
+
+Es una serie $p$ con $p = 1.5 > 1$. Por lo tanto, **converge**.
+
+---
+
+**Ejemplo 8:** Analizar $\sum_{n=1}^{\infty} \frac{1}{\sqrt{n}} = \sum_{n=1}^{\infty} n^{-1/2}$.
+
+Es una serie $p$ con $p = 1/2 < 1$. Por lo tanto, **diverge**.
+
+---
+
+## Criterio de la Razón
+
+**Ejemplo 9:** Analizar $\sum_{n=1}^{\infty} \frac{2^n}{n!}$.
+
+1.  $a_n = \frac{2^n}{n!}$, $a_{n+1} = \frac{2^{n+1}}{(n+1)!}$.
+2.  Calculamos el cociente:
+    $$
+    \left| \frac{a_{n+1}}{a_n} \right| = \frac{2^{n+1}}{(n+1)!} \cdot \frac{n!}{2^n} = \frac{2}{n+1}
+    $$
+3.  Tomamos el límite:
+    $$
+    L = \lim_{n \to \infty} \frac{2}{n+1} = 0
+    $$
+4.  Como $L = 0 < 1$, la serie **converge**.
+
+---
+
+**Ejemplo 10:** Analizar $\sum_{n=1}^{\infty} \frac{n^2}{2^n}$.
+
+1.  $a_n = \frac{n^2}{2^n}$, $a_{n+1} = \frac{(n+1)^2}{2^{n+1}}$.
+2.  Calculamos el cociente:
+    $$
+    \left| \frac{a_{n+1}}{a_n} \right| = \frac{(n+1)^2}{2^{n+1}} \cdot \frac{2^n}{n^2} = \frac{(n+1)^2}{2 n^2} = \frac{1}{2} \left( \frac{n+1}{n} \right)^2 = \frac{1}{2} \left(1 + \frac{1}{n}\right)^2
+    $$
+3.  Tomamos el límite:
+    $$
+    L = \lim_{n \to \infty} \frac{1}{2} \left(1 + \frac{1}{n}\right)^2 = \frac{1}{2} \cdot 1 = \frac{1}{2}
+    $$
+4.  Como $L = 0.5 < 1$, la serie **converge**.
+
+# Ejercicios Propuestos
+
+**Sucesiones (determinar si convergen o divergen):**
+
+1.  $a_n = \frac{3n}{2n+1}$
+2.  $a_n = \frac{\ln n}{n}$
+3.  $a_n = \frac{(-1)^n}{n}$
+
+**Series (analizar convergencia):**
+
+4.  $\sum_{n=0}^{\infty} \left(\frac{3}{4}\right)^n$ (Geométrica)
+5.  $\sum_{n=1}^{\infty} \frac{1}{n^2}$ (Serie $p$)
+6.  $\sum_{n=1}^{\infty} \frac{1}{n^{0.9}}$ (Serie $p$)
+7.  $\sum_{n=1}^{\infty} \frac{5^n}{n!}$ (Criterio de la razón)
+8.  $\sum_{n=1}^{\infty} \frac{n!}{10^n}$ (Criterio de la razón)
+9.  $\sum_{n=1}^{\infty} \frac{n}{3^n}$ (Criterio de la razón)
+10. $\sum_{n=1}^{\infty} \frac{2^n}{n^2}$ (Criterio de la razón)
+
+# Conclusión
+
+Hemos introducido las sucesiones y series infinitas, así como los criterios básicos para determinar su convergencia. Estos conceptos son fundamentales para aproximar funciones mediante polinomios (series de Taylor), tema de la próxima semana.
