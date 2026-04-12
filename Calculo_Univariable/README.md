@@ -34,7 +34,7 @@ Repositorio de materiales y recursos para las monitorias de Cálculo Univariable
 | **Clase 16** | Series de Potencia, Taylor y Maclaurin | [Ver Clase 16](https://ghostanalyst30.github.io/Recursos-de-Monitorias/Calculo_Univariable/Clase16.html) |
 
 
-**Pagina Principal: [Inicio](https://ghostanalyst30.github.io/Recursos-de-Monitorias/Calculo_Univariable)**
+**Pagina Principal: [Inicio](https://ghostanalyst30.github.io/Recursos-de-Monitorias)**
 
 # Info
 - **Autor**: Emmanuel Ascendra (GhostAnalyst)
